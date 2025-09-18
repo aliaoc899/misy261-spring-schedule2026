@@ -387,31 +387,33 @@ export function SlideApp({
         </div>
       </header>
 
-      {/* Tabs */}
-      <nav className="sticky top-[90px] z-10 bg-slate-50/95 backdrop-blur border-b border-slate-100 py-3">
-        <div ref={tabsBarRef} className="max-w-6xl mx-auto px-4 overflow-x-auto">
-          <div className="flex gap-2">
-            {slides.map((s, i) => {
-              const isActive = i === active;
-              return (
-                <button
-                  key={s.key}
-                  data-tab={i}
-                  onClick={() => setActive(i)}
-                  className={`shrink-0 inline-flex items-center gap-3 rounded-full border transition-all px-[0.8rem] py-[0.4rem] text-[0.84rem] min-w-[11.2rem] sm:min-w-[14.4rem] justify-start ${
-                    isActive
-                      ? "bg-slate-900 text-white border-slate-900 shadow-sm"
-                      : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
-                  }`}
-                >
-                  <span className={`inline-block w-3 h-3 rounded-full ${isActive ? "bg-white/90" : "bg-slate-300"}`} />
-                  <span className="font-medium">{s.title}</span>
-                </button>
-              );
-            })}
+      {/* Tabs - hide when there's only one slide */}
+      {slides.length > 1 && (
+        <nav className="sticky top-[90px] z-10 bg-slate-50/95 backdrop-blur border-b border-slate-100 py-3">
+          <div ref={tabsBarRef} className="max-w-6xl mx-auto px-4 overflow-x-auto">
+            <div className="flex gap-2">
+              {slides.map((s, i) => {
+                const isActive = i === active;
+                return (
+                  <button
+                    key={s.key}
+                    data-tab={i}
+                    onClick={() => setActive(i)}
+                    className={`shrink-0 inline-flex items-center gap-3 rounded-full border transition-all px-[0.8rem] py-[0.4rem] text-[0.84rem] min-w-[11.2rem] sm:min-w-[14.4rem] justify-start ${
+                      isActive
+                        ? "bg-slate-900 text-white border-slate-900 shadow-sm"
+                        : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
+                    }`}
+                  >
+                    <span className={`inline-block w-3 h-3 rounded-full ${isActive ? "bg-white/90" : "bg-slate-300"}`} />
+                    <span className="font-medium">{s.title}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      )}
 
       {/* Main */}
       <main className="max-w-5xl mx-auto px-4 py-8 pb-24">

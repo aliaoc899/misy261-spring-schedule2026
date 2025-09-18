@@ -171,20 +171,477 @@ function TablesSlide() {
 export default function ExampleApp() {
   // Centered Title Slide (hero style)
   const TitleSlide = () => (
-    <div className="text-center py-20">
-      <div className="text-sm uppercase tracking-widest text-emerald-700 font-semibold">{COURSE}</div>
-      <h1 className="mt-2 text-5xl font-extrabold text-slate-900">{TITLE}</h1>
-      <p className="mt-6 text-2xl text-slate-600">{SUBTITLE}</p>
-      <div className="mt-8 mx-auto h-1 w-36 bg-emerald-700 rounded-full" />
+    <div className="py-8">
+      <div className="text-center mb-8">
+        <div className="text-sm uppercase tracking-widest text-emerald-700 font-semibold">MISY 261 - Fall 2025</div>
+        <h1 className="mt-2 text-4xl font-extrabold text-slate-900">Business Information Systems</h1>
+        <div className="mt-6 mx-auto h-1 w-36 bg-emerald-700 rounded-full" />
+      </div>
+      
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-4">
+          <h2 className="text-sm font-medium text-slate-600 uppercase tracking-wide">Course Schedule</h2>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-slate-300">
+            <thead>
+              <tr className="bg-slate-100">
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Week</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Date</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Day</th>
+                <th className="border border-slate-300 px-4 py-2 text-center font-semibold">Topic</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Presentation Link</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">YouTube Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">1</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">27-Aug</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Syllabus Review</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">2</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">29-Aug</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Business Processes - ERP</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Monday</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold">Labor Day Holiday</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">3</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">3-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Introduction to Database</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://claude.ai/public/artifacts/d6a280f3-a186-4add-8b6e-b90b9abc6d1e" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Link
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">4</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">5-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Introduction to Database: Table Design, Primary Keys, Data Types</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://aliaoc899.github.io/Session-3-Slides/" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Link
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://youtu.be/7vJvlM04ScI" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Video
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">5</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">8-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Introduction to Database: Table Design, Primary Keys, Data Types</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://aliaoc899.github.io/misy261-Day-5/" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Link
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://youtu.be/G7hXF8hZJxM" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Video
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">6</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">10-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Introduction to Database: Table Design, Primary Keys, Data Types</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://aliaoc899.github.io/misy261-Day-5/" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Link
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://youtu.be/K-14u7X4AMo" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Video
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">7</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">12-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Access - Part 1: Introduction to Database and Query Design</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://aliaoc899.github.io/misy261-Day-7" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Link
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://youtu.be/bSbinHpCIHM" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Video
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">8</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">15-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Access - Part 1: Introduction to Database and Query Design</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://aliaoc899.github.io/misy261-Day-7" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Link
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://youtu.be/awnMaYoFPaY" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Video
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">9</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">17-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Access - Part 2: Criteria, Filtering the Query Results</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Link
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="https://youtu.be/h8TZhnvtVJI" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer">
+                    Video
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">10</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">19-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Create Calculated Fields</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">11</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">22-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab – Part 1, Part 2</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">12</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">24-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Total Queries</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">13</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">26-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">14</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">29-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Total Queries with Format function and Created fields</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">15</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">1-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">16</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">3-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab - Midterm Review</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr className="bg-yellow-50">
+                <td className="border border-slate-300 px-3 py-2 text-center">17</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">6-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold">Midterm Exam 1: Access Query Design</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">18</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">8-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Functions & Basics</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="border border-slate-300 px-3 py-2 text-center">19</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">10-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold">Blue Hen Re-Coop Day; Classes Suspended</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">20</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">13-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: IF, VLOOKUP, Data Validation</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">21</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">15-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Cleaning</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">22</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">17-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics (PivotTables)</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">23</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">20-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">24</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">22-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Practice lab</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">25</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">24-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">26</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">27-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">27</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">29-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Bar/Pie/Map/Treemaps</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">28</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">31-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Dual Axis, Line, Bubble Charts</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">29</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">3-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Practice Lab</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">30</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">5-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Parameters & Filters</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">31</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">7-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Calculated Fields, Reference Lines</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">32</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">10-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Practice Lab + Assignment Posted</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">33</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">12-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau & Excel: Exam Review 1</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">34</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">14-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau & Excel: Exam Review 1</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr className="bg-yellow-50">
+                <td className="border border-slate-300 px-3 py-2 text-center">35</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">17-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold">Midterm Exam 2: Tableau & Excel Data Analytics</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">36</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">19-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Final Project</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">37</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">21-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Final Project</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold">Fall Break</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold">Fall Break</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold">Fall Break</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">38</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">1-Dec</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Final Project</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">39</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">3-Dec</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
+                <td className="border border-slate-300 px-4 py-2">Final Project</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">40</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">5-Dec</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
+                <td className="border border-slate-300 px-4 py-2">Final Project</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 px-3 py-2 text-center">41</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">8-Dec</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
+                <td className="border border-slate-300 px-4 py-2">Final Project</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 
   const slides = [
     { key: "title", title: "Start", render: () => <TitleSlide /> },
-    { key: "welcome", title: "Welcome", render: () => <WelcomeSlide /> },
-    { key: "brainstorm", title: "Brainstorm", render: () => <BrainstormSlide /> },
-    { key: "tables", title: "Tables", render: () => <TablesSlide /> },
-    { key: "download", title: "Finish & Download", render: () => <DownloadSlide /> },
   ];
 
   return (
