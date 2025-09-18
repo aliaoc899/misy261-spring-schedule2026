@@ -19,6 +19,5 @@ describe('StudentApp', () => {
   it('shows Title content by default', () => {
     render(<StudentApp />)
     expect(screen.getByText('MISY261: Business Information Systems')).toBeInTheDocument()
-    expect(screen.getByText('Homework 1: Data Management and Data Modeling')).toBeInTheDocument()
   })
 })

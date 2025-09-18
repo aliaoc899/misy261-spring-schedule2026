@@ -922,7 +922,7 @@ Nora Davis,nora.d@example.com,302-555-1008,Female,W-3004,Advanced SQL,2025-10-05
  * ------------------------------*/
 function TitleSlide() {
   return (
-    <Slide title="MISY261: Business Information Systems" subtitle="Homework 1: Data Management and Data Modeling">
+    <Slide title="MISY261: Business Information Systems">
       <SectionCard title="Overview">
         <p className="text-slate-700">
           Work through the slides to explore the flat data, analyze issues, propose improvements, design tables (PK/FK),
@@ -1930,7 +1930,7 @@ async function downloadSummary({ record, sessionSalt }: { record: any; sessionSa
 
   const now = new Date().toLocaleString();
   const title = "MISY261: Business Information Systems";
-  const subtitle = "Homework 1: Data Management and Data Modeling";
+  const subtitle = "";
   const salt = String(sessionSalt || "");
   const device = (() => {
     try {

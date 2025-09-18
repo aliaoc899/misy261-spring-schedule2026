@@ -4,7 +4,7 @@ import { SlideApp, Slide, SectionCard, useBucket, SimpleTableCard, Row } from ".
 // Shared constants for the deck
 const COURSE = "MISY261";
 const TITLE = "MISY261: Business Information Systems";
-const SUBTITLE = "Homework 1: Data Management and Data Modeling";
+const SUBTITLE = "";
 
 // Example slides showing how to define screens one-by-one and keep state per slide.
 
