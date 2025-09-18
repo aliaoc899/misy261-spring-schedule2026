@@ -416,55 +416,57 @@ export function SlideApp({
       )}
 
       {/* Main */}
-      <main className="max-w-5xl mx-auto px-4 py-8 pb-24">
+      <main className={`max-w-5xl mx-auto px-4 py-8 ${slides.length > 1 ? 'pb-24' : 'pb-8'}`}>
         <SlideKitContext.Provider value={ctxValue}>{slides[active]?.render()}</SlideKitContext.Provider>
       </main>
 
-      {/* Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 z-20 bg-white/90 backdrop-blur border-t border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={handleReset}
-              className="px-3 py-1.5 rounded-full border border-slate-300 text-slate-700 hover:bg-slate-50 text-sm"
-              title="Clear all saved inputs and restart"
-            >
-              Reset
-            </button>
-            <div className="text-xs text-slate-500">Use ← → arrow keys • Space for next • F for fullscreen</div>
+      {/* Footer - hide when there's only one slide */}
+      {slides.length > 1 && (
+        <footer className="fixed bottom-0 left-0 right-0 z-20 bg-white/90 backdrop-blur border-t border-slate-200">
+          <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handleReset}
+                className="px-3 py-1.5 rounded-full border border-slate-300 text-slate-700 hover:bg-slate-50 text-sm"
+                title="Clear all saved inputs and restart"
+              >
+                Reset
+              </button>
+              <div className="text-xs text-slate-500">Use ← → arrow keys • Space for next • F for fullscreen</div>
+            </div>
+            <div className="flex-1 text-center text-sm text-slate-700 font-medium truncate">
+              {slides[active]?.title}
+              {identityName ? ` • ${identityName}` : ""}
+              {` • ${date}`}
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                aria-label="Previous slide"
+                title="Previous (←)"
+                className="p-2 rounded-full bg-slate-900 text-white disabled:opacity-50 hover:bg-slate-800 transition-colors"
+                onClick={() => setActive((v) => Math.max(0, v - 1))}
+                disabled={active === 0}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                aria-label="Next slide"
+                title="Next (→ or Space)"
+                className="p-2 rounded-full bg-slate-900 text-white disabled:opacity-50 hover:bg-slate-800 transition-colors"
+                onClick={() => setActive((v) => Math.min(slides.length - 1, v + 1))}
+                disabled={active === slides.length - 1}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
-          <div className="flex-1 text-center text-sm text-slate-700 font-medium truncate">
-            {slides[active]?.title}
-            {identityName ? ` • ${identityName}` : ""}
-            {` • ${date}`}
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              aria-label="Previous slide"
-              title="Previous (←)"
-              className="p-2 rounded-full bg-slate-900 text-white disabled:opacity-50 hover:bg-slate-800 transition-colors"
-              onClick={() => setActive((v) => Math.max(0, v - 1))}
-              disabled={active === 0}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              aria-label="Next slide"
-              title="Next (→ or Space)"
-              className="p-2 rounded-full bg-slate-900 text-white disabled:opacity-50 hover:bg-slate-800 transition-colors"
-              onClick={() => setActive((v) => Math.min(slides.length - 1, v + 1))}
-              disabled={active === slides.length - 1}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      )}
     </div>
   );
 }
