@@ -208,7 +208,14 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">27-Aug</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
                 <td className="border border-slate-300 px-4 py-2">Syllabus Review</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a href="./Syllabus- MISY 261-Fall 2025.pdf" 
+                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     target="_blank" rel="noopener noreferrer"
+                     download>
+                    Syllabus
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
