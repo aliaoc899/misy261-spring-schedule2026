@@ -415,9 +415,27 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">11</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">22-Sep</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Create Calculated Fields</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Create Calculated Fields and Extract From Date Field, Format Function</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/misy261-Day-10-CreateCalculatedFields/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://www.youtube.com/watch?v=SGu63RWrQu0" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
@@ -425,8 +443,26 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">24-Sep</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
                 <td className="border border-slate-300 px-4 py-2">Access: Total Queries</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://www.youtube.com/watch?v=wS2nSuQKSLo" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
@@ -434,24 +470,51 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">26-Sep</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
                 <td className="border border-slate-300 px-4 py-2">Access: Total Queries</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://www.youtube.com/watch?v=P0BhynX-W8A" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">14</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">29-Sep</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Total Queries with Format function and Created fields</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab - Melbourne Housing</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://www.youtube.com/watch?v=Qvu7gtRqn38" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">15</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">1-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab - Melbourne Housing</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -460,7 +523,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">16</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">3-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab - Midterm Review</td>
+                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab - Midterm Review - Travel Light</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
