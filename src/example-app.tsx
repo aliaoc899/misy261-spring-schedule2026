@@ -9,7 +9,7 @@ const downloadTableAsPDF = () => {
 
   // Table data matching the exact content from the actual table
   const tableRows = [
-    ["Week", "Date", "Day", "Topic", "Presentation Link", "YouTube Link", "Homework"],
+    ["Session", "Date", "Day", "Topic", "Presentation Link", "YouTube Link", "Homework"],
     ["1", "27-Aug", "Wed", "Syllabus Review", `<a href="./Syllabus- MISY 261-Fall 2025.pdf" target="_blank">Syllabus</a>`, "-", "-"],
     ["2", "29-Aug", "Fri", "Business Processes - ERP", "-", "-", "-"],
     ["-", "-", "Monday", "Labor Day Holiday", "-", "-", "-"],
@@ -26,23 +26,23 @@ const downloadTableAsPDF = () => {
     ["13", "26-Sep", "Fri", "Access: Total Queries (Sum, Count, Average)", `<a href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=P0BhynX-W8A" target="_blank">Video</a>`, "-"],
     ["14", "29-Sep", "Mon", "Access: Practice Lab - Melbourne Housing", "-", `<a href="https://www.youtube.com/watch?v=Qvu7gtRqn38" target="_blank">Video</a>`, "-"],
     ["15", "1-Oct", "Wed", "Access: Practice Lab - Melbourne Housing", "-", "-", "-"],
-    ["16", "3-Oct", "Fri", "Access: Practice Lab - Midterm Review - Travel Light", "-", "-", "-"],
+    ["16", "3-Oct", "Fri", "Access: Practice Lab - Midterm Review - Travel Light", "-", `<a href="https://www.youtube.com/watch?v=oNr2pA9OuMs" target="_blank">Video</a>`, "-"],
     ["17", "6-Oct", "Mon", "Midterm Exam 1: Access Query Design", "-", "-", "-"],
     ["18", "8-Oct", "Wed", "Tableau - App Instalation and Product Key Instructions", "-", "-", "-"],
     ["19", "10-Oct", "Fri", "Blue Hen Re-Coop Day; Classes Suspended", "-", "-", "-"],
-    ["20", "13-Oct", "Mon", "Excel: IF, VLOOKUP, Data Validation", "-", "-", "-"],
-    ["21", "15-Oct", "Wed", "Excel: Data Cleaning", "-", "-", "-"],
-    ["22", "17-Oct", "Fri", "Excel: Data Analytics (PivotTables)", "-", "-", "-"],
-    ["23", "20-Oct", "Mon", "Excel: Data Analytics", "-", "-", "-"],
-    ["24", "22-Oct", "Wed", "Excel: Practice lab", "-", "-", "-"],
-    ["25", "24-Oct", "Fri", "Excel: Data Analytics", "-", "-", "-"],
-    ["26", "27-Oct", "Mon", "Excel: Data Analytics", "-", "-", "-"],
-    ["27", "29-Oct", "Wed", "Tableau: Bar/Pie/Map/Treemaps", "-", "-", "-"],
-    ["28", "31-Oct", "Fri", "Tableau: Dual Axis, Line, Bubble Charts", "-", "-", "-"],
-    ["29", "3-Nov", "Mon", "Tableau: Practice Lab", "-", "-", "-"],
-    ["30", "5-Nov", "Wed", "Tableau: Parameters & Filters", "-", "-", "-"],
-    ["31", "7-Nov", "Fri", "Tableau: Calculated Fields, Reference Lines", "-", "-", "-"],
-    ["32", "10-Nov", "Mon", "Tableau: Practice Lab + Assignment Posted", "-", "-", "-"],
+    ["20", "13-Oct", "Mon", "Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps", "-", "-", "-"],
+    ["21", "15-Oct", "Wed", "Tableau: Dual Axis, Line, Bubble Charts", "-", "-", "-"],
+    ["22", "17-Oct", "Fri", "Tableau: Practice Lab", "-", "-", "-"],
+    ["23", "20-Oct", "Mon", "Tableau: Parameters & Filters", "-", "-", "-"],
+    ["24", "22-Oct", "Wed", "Tableau: Calculated Fields, Reference Lines", "-", "-", "-"],
+    ["25", "24-Oct", "Fri", "Tableau: Practice Lab + Assignment Posted", "-", "-", "-"],
+    ["26", "27-Oct", "Mon", "Excel: IF, VLOOKUP, Data Validation", "-", "-", "-"],
+    ["27", "29-Oct", "Wed", "Excel: Data Cleaning", "-", "-", "-"],
+    ["28", "31-Oct", "Fri", "Excel: Data Analytics (PivotTables)", "-", "-", "-"],
+    ["29", "3-Nov", "Mon", "Excel: Data Analytics", "-", "-", "-"],
+    ["30", "5-Nov", "Wed", "Excel: Data Analytics", "-", "-", "-"],
+    ["31", "7-Nov", "Fri", "Excel: Data Analytics", "-", "-", "-"],
+    ["32", "10-Nov", "Mon", "Excel: Data Analytics", "-", "-", "-"],
     ["33", "12-Nov", "Wed", "Tableau & Excel: Exam Review 1", "-", "-", "-"],
     ["34", "14-Nov", "Fri", "Tableau & Excel: Exam Review 1", "-", "-", "-"],
     ["35", "17-Nov", "Mon", "Midterm Exam 2: Tableau & Excel Data Analytics", "-", "-", "-"],
@@ -83,7 +83,7 @@ const downloadTableAsPDF = () => {
       </style>
     </head>
     <body>
-      <h1>MISY261: Business Information Systems - Course Schedule</h1>
+      <h1>MISY261 - Fall 2025<br>Business Information Systems</h1>
       <table>
         <thead>
           <tr>
@@ -322,7 +322,7 @@ export default function ExampleApp() {
           <table className="w-full border-collapse border border-slate-300">
             <thead>
               <tr className="bg-slate-100">
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Week</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Session</th>
                 <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Date</th>
                 <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Day</th>
                 <th className="border border-slate-300 px-4 py-2 text-center font-semibold">Topic</th>
@@ -654,7 +654,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
                 <td className="border border-slate-300 px-4 py-2">Access: Practice Lab - Midterm Review - Travel Light</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://www.youtube.com/watch?v=oNr2pA9OuMs" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr className="bg-yellow-50">
@@ -688,7 +697,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">20</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">13-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: IF, VLOOKUP, Data Validation</td>
+                <td className="border border-slate-300 px-4 py-2">Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -697,7 +706,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">21</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">15-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Cleaning</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Dual Axis, Line, Bubble Charts</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -706,7 +715,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">22</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">17-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics (PivotTables)</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Practice Lab</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -715,7 +724,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">23</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">20-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Parameters & Filters</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -724,7 +733,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">24</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">22-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Practice lab</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Calculated Fields, Reference Lines</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -733,7 +742,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">25</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">24-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Practice Lab + Assignment Posted</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -742,7 +751,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">26</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">27-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: IF, VLOOKUP, Data Validation</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -751,7 +760,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">27</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">29-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Bar/Pie/Map/Treemaps</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Cleaning</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -760,7 +769,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">28</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">31-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Dual Axis, Line, Bubble Charts</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics (PivotTables)</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -769,7 +778,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">29</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">3-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Practice Lab</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -778,7 +787,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">30</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">5-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Parameters & Filters</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -787,7 +796,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">31</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">7-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Calculated Fields, Reference Lines</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -796,7 +805,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">32</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">10-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Practice Lab + Assignment Posted</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
