@@ -1,6 +1,126 @@
 import React from "react";
 import { SlideApp, Slide, SectionCard, useBucket, SimpleTableCard, Row } from "./lib/slidekit.tsx";
 
+// Function to download table as PDF
+const downloadTableAsPDF = () => {
+  // Create a new window with the table content for printing
+  const printWindow = window.open('', '_blank');
+  if (!printWindow) return;
+
+  // Table data matching the exact content from the actual table
+  const tableRows = [
+    ["Week", "Date", "Day", "Topic", "Presentation Link", "YouTube Link", "Homework"],
+    ["1", "27-Aug", "Wed", "Syllabus Review", `<a href="./Syllabus- MISY 261-Fall 2025.pdf" target="_blank">Syllabus</a>`, "-", "-"],
+    ["2", "29-Aug", "Fri", "Business Processes - ERP", "-", "-", "-"],
+    ["-", "-", "Monday", "Labor Day Holiday", "-", "-", "-"],
+    ["3", "3-Sep", "Wed", "Introduction to Database", `<a href="https://claude.ai/public/artifacts/d6a280f3-a186-4add-8b6e-b90b9abc6d1e" target="_blank">Link</a>`, "-", "-"],
+    ["4", "5-Sep", "Fri", "Introduction to Database: Table Design, Primary Keys, Data Types", `<a href="https://aliaoc899.github.io/Session-3-Slides/" target="_blank">Link</a>`, `<a href="https://youtu.be/7vJvlM04ScI" target="_blank">Video</a>`, "-"],
+    ["5", "8-Sep", "Mon", "Introduction to Database: Table Design, Primary Keys, Data Types", `<a href="https://aliaoc899.github.io/misy261-Day-5/" target="_blank">Link</a>`, `<a href="https://youtu.be/G7hXF8hZJxM" target="_blank">Video</a>`, "-"],
+    ["6", "10-Sep", "Wed", "Introduction to Database: Table Design, Primary Keys, Data Types", `<a href="https://aliaoc899.github.io/misy261-Day-5/" target="_blank">Link</a>`, `<a href="https://youtu.be/K-14u7X4AMo" target="_blank">Video</a>`, `<a href="https://aliaoc899.github.io/homework-v3" target="_blank">Homework 1</a>`],
+    ["7", "12-Sep", "Fri", "Access - Part 1: Introduction to Database and Query Design", `<a href="https://aliaoc899.github.io/misy261-Day-7" target="_blank">Link</a>`, `<a href="https://youtu.be/bSbinHpCIHM" target="_blank">Video</a>`, "-"],
+    ["8", "15-Sep", "Mon", "Access - Part 1: Introduction to Database and Query Design", `<a href="https://aliaoc899.github.io/misy261-Day-7" target="_blank">Link</a>`, `<a href="https://youtu.be/awnMaYoFPaY" target="_blank">Video</a>`, "-"],
+    ["9", "17-Sep", "Wed", "Access - Part 2: Criteria, Filtering the Query Results", `<a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2" target="_blank">Link</a>`, `<a href="https://youtu.be/h8TZhnvtVJI" target="_blank">Video</a>`, "-"],
+    ["10", "19-Sep", "Fri", "Access - Part 2: Criteria, Filtering the Query Results", `<a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2-2/" target="_blank">Link</a>`, `<a href="https://youtu.be/yDeOE5cTvKk" target="_blank">Video</a>`, `<a href="https://aliaoc899.github.io/misy261-Day-10-practice" target="_blank">Homework 2</a>`],
+    ["11", "22-Sep", "Mon", "Access: Create Calculated Fields and Extract From Date Field, Format Function", `<a href="https://aliaoc899.github.io/misy261-Day-10-CreateCalculatedFields/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=SGu63RWrQu0" target="_blank">Video</a>`, "-"],
+    ["12", "24-Sep", "Wed", "Access: Total Queries (Sum, Count, Average)", `<a href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=wS2nSuQKSLo" target="_blank">Video</a>`, "-"],
+    ["13", "26-Sep", "Fri", "Access: Total Queries (Sum, Count, Average)", `<a href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=P0BhynX-W8A" target="_blank">Video</a>`, "-"],
+    ["14", "29-Sep", "Mon", "Access: Practice Lab - Melbourne Housing", "-", `<a href="https://www.youtube.com/watch?v=Qvu7gtRqn38" target="_blank">Video</a>`, "-"],
+    ["15", "1-Oct", "Wed", "Access: Practice Lab - Melbourne Housing", "-", "-", "-"],
+    ["16", "3-Oct", "Fri", "Access: Practice Lab - Midterm Review - Travel Light", "-", "-", "-"],
+    ["17", "6-Oct", "Mon", "Midterm Exam 1: Access Query Design", "-", "-", "-"],
+    ["18", "8-Oct", "Wed", "Tableau - App Instalation and Product Key Instructions", "-", "-", "-"],
+    ["19", "10-Oct", "Fri", "Blue Hen Re-Coop Day; Classes Suspended", "-", "-", "-"],
+    ["20", "13-Oct", "Mon", "Excel: IF, VLOOKUP, Data Validation", "-", "-", "-"],
+    ["21", "15-Oct", "Wed", "Excel: Data Cleaning", "-", "-", "-"],
+    ["22", "17-Oct", "Fri", "Excel: Data Analytics (PivotTables)", "-", "-", "-"],
+    ["23", "20-Oct", "Mon", "Excel: Data Analytics", "-", "-", "-"],
+    ["24", "22-Oct", "Wed", "Excel: Practice lab", "-", "-", "-"],
+    ["25", "24-Oct", "Fri", "Excel: Data Analytics", "-", "-", "-"],
+    ["26", "27-Oct", "Mon", "Excel: Data Analytics", "-", "-", "-"],
+    ["27", "29-Oct", "Wed", "Tableau: Bar/Pie/Map/Treemaps", "-", "-", "-"],
+    ["28", "31-Oct", "Fri", "Tableau: Dual Axis, Line, Bubble Charts", "-", "-", "-"],
+    ["29", "3-Nov", "Mon", "Tableau: Practice Lab", "-", "-", "-"],
+    ["30", "5-Nov", "Wed", "Tableau: Parameters & Filters", "-", "-", "-"],
+    ["31", "7-Nov", "Fri", "Tableau: Calculated Fields, Reference Lines", "-", "-", "-"],
+    ["32", "10-Nov", "Mon", "Tableau: Practice Lab + Assignment Posted", "-", "-", "-"],
+    ["33", "12-Nov", "Wed", "Tableau & Excel: Exam Review 1", "-", "-", "-"],
+    ["34", "14-Nov", "Fri", "Tableau & Excel: Exam Review 1", "-", "-", "-"],
+    ["35", "17-Nov", "Mon", "Midterm Exam 2: Tableau & Excel Data Analytics", "-", "-", "-"],
+    ["36", "19-Nov", "Wed", "Final Project", "-", "-", "-"],
+    ["37", "21-Nov", "Fri", "Final Project", "-", "-", "-"],
+    ["-", "-", "Mon", "Fall Break", "-", "-", "-"],
+    ["-", "-", "Wed", "Fall Break", "-", "-", "-"],
+    ["-", "-", "Fri", "Fall Break", "-", "-", "-"],
+    ["38", "1-Dec", "Mon", "Final Project", "-", "-", "-"],
+    ["39", "3-Dec", "Wed", "Final Project", "-", "-", "-"],
+    ["40", "5-Dec", "Fri", "Final Project", "-", "-", "-"],
+    ["41", "8-Dec", "Mon", "Final Project", "-", "-", "-"]
+  ];
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>MISY261 Course Schedule</title>
+      <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #047857; text-align: center; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; font-size: 12px; }
+        th { background-color: #f1f5f9; font-weight: bold; text-align: center; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .week-col, .date-col, .day-col { text-align: center; }
+        .topic-col { text-align: left; max-width: 300px; }
+        a { color: #2563eb; text-decoration: underline; }
+        a:hover { color: #1d4ed8; }
+        @media print {
+          body { margin: 0; }
+          table { page-break-inside: auto; font-size: 10px; }
+          tr { page-break-inside: avoid; page-break-after: auto; }
+          a { color: #2563eb !important; }
+          th, td { padding: 4px; }
+        }
+      </style>
+    </head>
+    <body>
+      <h1>MISY261: Business Information Systems - Course Schedule</h1>
+      <table>
+        <thead>
+          <tr>
+            ${tableRows[0].map((header, index) => 
+              `<th class="${index === 3 ? 'topic-col' : ''}">${header}</th>`
+            ).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows.slice(1).map(row => 
+            `<tr>${row.map((cell, index) => {
+              let className = '';
+              if (index === 0) className = 'week-col';
+              else if (index === 1) className = 'date-col';
+              else if (index === 2) className = 'day-col';
+              else if (index === 3) className = 'topic-col';
+              return `<td class="${className}">${cell}</td>`;
+            }).join('')}</tr>`
+          ).join('')}
+        </tbody>
+      </table>
+      <script>
+        window.onload = function() {
+          window.print();
+          window.onafterprint = function() {
+            window.close();
+          };
+        };
+      </script>
+    </body>
+    </html>
+  `;
+
+  printWindow.document.write(htmlContent);
+  printWindow.document.close();
+};
+
 // Shared constants for the deck
 const COURSE = "MISY261";
 const TITLE = "MISY261: Business Information Systems";
@@ -186,8 +306,17 @@ export default function ExampleApp() {
       </div>
       
       <div className="max-w-6xl mx-auto">
-        <div className="mb-4">
+        <div className="mb-4 flex justify-between items-center">
           <h2 className="text-sm font-medium text-slate-600 uppercase tracking-wide">Course Schedule</h2>
+          <button 
+            onClick={downloadTableAsPDF}
+            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Download PDF
+          </button>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse border border-slate-300">
@@ -541,7 +670,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">18</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">8-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Functions & Basics</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau - App Instalation and Product Key Instructions</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
