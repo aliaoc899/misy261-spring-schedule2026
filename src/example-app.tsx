@@ -23,22 +23,22 @@ const downloadTableAsPDF = () => {
     ["10", "19-Sep", "Fri", "Access - Part 2: Criteria, Filtering the Query Results", `<a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2-2/" target="_blank">Link</a>`, `<a href="https://youtu.be/yDeOE5cTvKk" target="_blank">Video</a>`, `<a href="https://aliaoc899.github.io/misy261-Day-10-practice" target="_blank">Homework 2</a>`],
     ["11", "22-Sep", "Mon", "Access: Create Calculated Fields and Extract From Date Field, Format Function", `<a href="https://aliaoc899.github.io/misy261-Day-10-CreateCalculatedFields/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=SGu63RWrQu0" target="_blank">Video</a>`, "-"],
     ["12", "24-Sep", "Wed", "Access: Total Queries (Sum, Count, Average)", `<a href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=wS2nSuQKSLo" target="_blank">Video</a>`, "-"],
-    ["13", "26-Sep", "Fri", "Access: Total Queries (Sum, Count, Average)", `<a href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=P0BhynX-W8A" target="_blank">Video</a>`, "-"],
+    ["13", "26-Sep", "Fri", "Access: Total Queries (Sum, Count, Average)", `<a href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=P0BhynX-W8A" target="_blank">Video</a>`, "Homework 3"],
     ["14", "29-Sep", "Mon", "Access: Practice Lab - Melbourne Housing", "-", `<a href="https://www.youtube.com/watch?v=Qvu7gtRqn38" target="_blank">Video</a>`, "-"],
     ["15", "1-Oct", "Wed", "Access: Practice Lab - Melbourne Housing", "-", "-", "-"],
     ["16", "3-Oct", "Fri", "Access: Practice Lab - Midterm Review - Travel Light", "-", `<a href="https://www.youtube.com/watch?v=oNr2pA9OuMs" target="_blank">Video</a>`, "-"],
     ["17", "6-Oct", "Mon", "Midterm Exam 1: Access Query Design", "-", "-", "-"],
     ["18", "8-Oct", "Wed", "Tableau - App Instalation and Product Key Instructions", "-", "-", "-"],
     ["19", "10-Oct", "Fri", "Blue Hen Re-Coop Day; Classes Suspended", "-", "-", "-"],
-    ["20", "13-Oct", "Mon", "Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps", "-", "-", "-"],
-    ["21", "15-Oct", "Wed", "Tableau: Dual Axis, Line, Bubble Charts", "-", "-", "-"],
-    ["22", "17-Oct", "Fri", "Tableau: Practice Lab", "-", "-", "-"],
-    ["23", "20-Oct", "Mon", "Tableau: Parameters & Filters", "-", "-", "-"],
-    ["24", "22-Oct", "Wed", "Tableau: Calculated Fields, Reference Lines", "-", "-", "-"],
-    ["25", "24-Oct", "Fri", "Tableau: Practice Lab + Assignment Posted", "-", "-", "-"],
-    ["26", "27-Oct", "Mon", "Excel: IF, VLOOKUP, Data Validation", "-", "-", "-"],
-    ["27", "29-Oct", "Wed", "Excel: Data Cleaning", "-", "-", "-"],
-    ["28", "31-Oct", "Fri", "Excel: Data Analytics (PivotTables)", "-", "-", "-"],
+  ["20", "13-Oct", "Mon", "Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps", "-", `<a href="https://youtu.be/GcdvaVvncWA" target="_blank">Video</a>`, "-"],
+    ["21", "15-Oct", "Wed", "Tableau: Dual Axis, Line, Bubble Charts", "-", `<a href="https://youtu.be/-Un07YuUjfw" target="_blank">Video</a>`, "-"],
+  ["22", "17-Oct", "Fri", "Tableau: Chart Design and Dashboard Design", "-", `<a href="https://youtu.be/TCpvFJxU_yA" target="_blank">Video</a>`, "Homework 4"],
+    ["23", "20-Oct", "Mon", "Tableau: Calculated Fields, Parameters & Filters", "-", `<a href="https://youtu.be/Fgb4Fdci0-8" target="_blank">Video</a>`, "-"],
+    ["24", "22-Oct", "Wed", "Tableau: Calculated Fields, Reference Lines", "-", `<a href="https://youtu.be/CazgJFFRyIU" target="_blank">Video</a>`, "-"],
+    ["25", "24-Oct", "Fri", "Tableau: Dashboard Design", "-", `<a href="https://youtu.be/naS5VKVtz_I" target="_blank">Video</a>`, "Homework 5"],
+    ["26", "27-Oct", "Mon", "Tableau: Dashboard Design", "-", "-", "-"],
+    ["27", "29-Oct", "Wed", "Excel: Data Cleaning", "-", `<a href="https://youtu.be/X5Y7AZ-cMws" target="_blank">Video</a>`, "-"],
+    ["28", "31-Oct", "Fri", "Excel: Data Cleaning", "-", "-", "-"],
     ["29", "3-Nov", "Mon", "Excel: Data Analytics", "-", "-", "-"],
     ["30", "5-Nov", "Wed", "Excel: Data Analytics", "-", "-", "-"],
     ["31", "7-Nov", "Fri", "Excel: Data Analytics", "-", "-", "-"],
@@ -619,7 +619,7 @@ export default function ExampleApp() {
                     Video
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Homework 3</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">14</td>
@@ -699,7 +699,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
                 <td className="border border-slate-300 px-4 py-2">Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/GcdvaVvncWA" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
@@ -708,25 +717,52 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
                 <td className="border border-slate-300 px-4 py-2">Tableau: Dual Axis, Line, Bubble Charts</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/-Un07YuUjfw" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">22</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">17-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Practice Lab</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Chart Design and Dashboard Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/TCpvFJxU_yA" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Homework 4</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">23</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">20-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Parameters & Filters</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Calculated Fields, Parameters & Filters</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/Fgb4Fdci0-8" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
@@ -735,23 +771,41 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
                 <td className="border border-slate-300 px-4 py-2">Tableau: Calculated Fields, Reference Lines</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/CazgJFFRyIU" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">25</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">24-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Practice Lab + Assignment Posted</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Dashboard Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/naS5VKVtz_I" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">Homework 5</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">26</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">27-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: IF, VLOOKUP, Data Validation</td>
+                <td className="border border-slate-300 px-4 py-2">Tableau: Dashboard Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -762,14 +816,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
                 <td className="border border-slate-300 px-4 py-2">Excel: Data Cleaning</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/X5Y7AZ-cMws" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">28</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">31-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics (PivotTables)</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Data Cleaning</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
