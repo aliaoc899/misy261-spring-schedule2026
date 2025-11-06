@@ -37,7 +37,7 @@ const downloadTableAsPDF = () => {
     ["24", "22-Oct", "Wed", "Tableau: Calculated Fields, Reference Lines", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/CazgJFFRyIU" target="_blank">Video</a>`, "-"],
     ["25", "24-Oct", "Fri", "Tableau: Dashboard Design", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/naS5VKVtz_I" target="_blank">Video</a>`, "Homework 5"],
     ["26", "27-Oct", "Mon", "Tableau: Dashboard Design", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" target="_blank">Slides</a>`, "-", "-"],
-    ["27", "29-Oct", "Wed", "Excel: Data Cleaning", "-", `<a href="https://youtu.be/X5Y7AZ-cMws" target="_blank">Video</a>`, "-"],
+    ["27", "29-Oct", "Wed", "Excel: Data Cleaning", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/data-cleaning-lookup-practice.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/X5Y7AZ-cMws" target="_blank">Video</a>`, "-"],
     ["28", "31-Oct", "Fri", "Excel: Data Cleaning", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/qHqxfRbOUrA" target="_blank">Video</a>`, "-"],
     ["29", "3-Nov", "Mon", "Data Cleaning and Preparation", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/ihf17HrgI-4" target="_blank">Video</a>`, "-"],
     ["30", "5-Nov", "Wed", "Excel: Pivot Tables", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-pivot.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/JySnGxFNkAo" target="_blank">Video</a>`, "-"],
@@ -878,7 +878,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">29-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
                 <td className="border border-slate-300 px-4 py-2">Excel: Data Cleaning</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/data-cleaning-lookup-practice.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://youtu.be/X5Y7AZ-cMws" 
