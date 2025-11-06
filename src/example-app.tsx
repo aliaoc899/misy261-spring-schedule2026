@@ -30,18 +30,18 @@ const downloadTableAsPDF = () => {
     ["17", "6-Oct", "Mon", "Midterm Exam 1: Access Query Design", "-", "-", "-"],
     ["18", "8-Oct", "Wed", "Tableau - App Instalation and Product Key Instructions", "-", "-", "-"],
     ["19", "10-Oct", "Fri", "Blue Hen Re-Coop Day; Classes Suspended", "-", "-", "-"],
-  ["20", "13-Oct", "Mon", "Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps", "-", `<a href="https://youtu.be/GcdvaVvncWA" target="_blank">Video</a>`, "-"],
-    ["21", "15-Oct", "Wed", "Tableau: Dual Axis, Line, Bubble Charts", "-", `<a href="https://youtu.be/-Un07YuUjfw" target="_blank">Video</a>`, "-"],
-  ["22", "17-Oct", "Fri", "Tableau: Chart Design and Dashboard Design", "-", `<a href="https://youtu.be/TCpvFJxU_yA" target="_blank">Video</a>`, "Homework 4"],
-    ["23", "20-Oct", "Mon", "Tableau: Calculated Fields, Parameters & Filters", "-", `<a href="https://youtu.be/Fgb4Fdci0-8" target="_blank">Video</a>`, "-"],
-    ["24", "22-Oct", "Wed", "Tableau: Calculated Fields, Reference Lines", "-", `<a href="https://youtu.be/CazgJFFRyIU" target="_blank">Video</a>`, "-"],
-    ["25", "24-Oct", "Fri", "Tableau: Dashboard Design", "-", `<a href="https://youtu.be/naS5VKVtz_I" target="_blank">Video</a>`, "Homework 5"],
-    ["26", "27-Oct", "Mon", "Tableau: Dashboard Design", "-", "-", "-"],
+  ["20", "13-Oct", "Mon", "Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/GcdvaVvncWA" target="_blank">Video</a>`, "-"],
+    ["21", "15-Oct", "Wed", "Tableau: Dual Axis, Line, Bubble Charts", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/-Un07YuUjfw" target="_blank">Video</a>`, "-"],
+  ["22", "17-Oct", "Fri", "Tableau: Chart Design and Dashboard Design", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/TCpvFJxU_yA" target="_blank">Video</a>`, "Homework 4"],
+    ["23", "20-Oct", "Mon", "Tableau: Calculated Fields, Parameters & Filters", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/Fgb4Fdci0-8" target="_blank">Video</a>`, "-"],
+    ["24", "22-Oct", "Wed", "Tableau: Calculated Fields, Reference Lines", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/CazgJFFRyIU" target="_blank">Video</a>`, "-"],
+    ["25", "24-Oct", "Fri", "Tableau: Dashboard Design", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/naS5VKVtz_I" target="_blank">Video</a>`, "Homework 5"],
+    ["26", "27-Oct", "Mon", "Tableau: Dashboard Design", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" target="_blank">Slides</a>`, "-", "-"],
     ["27", "29-Oct", "Wed", "Excel: Data Cleaning", "-", `<a href="https://youtu.be/X5Y7AZ-cMws" target="_blank">Video</a>`, "-"],
-    ["28", "31-Oct", "Fri", "Excel: Data Cleaning", "-", "-", "-"],
-    ["29", "3-Nov", "Mon", "Excel: Data Analytics", "-", "-", "-"],
-    ["30", "5-Nov", "Wed", "Excel: Data Analytics", "-", "-", "-"],
-    ["31", "7-Nov", "Fri", "Excel: Data Analytics", "-", "-", "-"],
+    ["28", "31-Oct", "Fri", "Excel: Data Cleaning", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/qHqxfRbOUrA" target="_blank">Video</a>`, "-"],
+    ["29", "3-Nov", "Mon", "Data Cleaning and Preparation", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/ihf17HrgI-4" target="_blank">Video</a>`, "-"],
+    ["30", "5-Nov", "Wed", "Excel: Pivot Tables", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-pivot.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/JySnGxFNkAo" target="_blank">Video</a>`, "-"],
+    ["31", "7-Nov", "Fri", "Homework 6 - Data Cleaning", "-", "-", "-"],
     ["32", "10-Nov", "Mon", "Excel: Data Analytics", "-", "-", "-"],
     ["33", "12-Nov", "Wed", "Tableau & Excel: Exam Review 1", "-", "-", "-"],
     ["34", "14-Nov", "Fri", "Tableau & Excel: Exam Review 1", "-", "-", "-"],
@@ -698,7 +698,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">13-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
                 <td className="border border-slate-300 px-4 py-2">Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://youtu.be/GcdvaVvncWA" 
@@ -716,7 +725,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">15-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
                 <td className="border border-slate-300 px-4 py-2">Tableau: Dual Axis, Line, Bubble Charts</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://youtu.be/-Un07YuUjfw" 
@@ -734,7 +752,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">17-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
                 <td className="border border-slate-300 px-4 py-2">Tableau: Chart Design and Dashboard Design</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://youtu.be/TCpvFJxU_yA" 
@@ -752,7 +779,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">20-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
                 <td className="border border-slate-300 px-4 py-2">Tableau: Calculated Fields, Parameters & Filters</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://youtu.be/Fgb4Fdci0-8" 
@@ -770,7 +806,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">22-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
                 <td className="border border-slate-300 px-4 py-2">Tableau: Calculated Fields, Reference Lines</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://youtu.be/CazgJFFRyIU" 
@@ -788,7 +833,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">24-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
                 <td className="border border-slate-300 px-4 py-2">Tableau: Dashboard Design</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://youtu.be/naS5VKVtz_I" 
@@ -806,7 +860,16 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">27-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
                 <td className="border border-slate-300 px-4 py-2">Tableau: Dashboard Design</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
@@ -833,33 +896,87 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">31-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
                 <td className="border border-slate-300 px-4 py-2">Excel: Data Cleaning</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/qHqxfRbOUrA" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">29</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">3-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-4 py-2">Data Cleaning and Preparation</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/ihf17HrgI-4" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">30</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">5-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-4 py-2">Excel: Pivot Tables</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-pivot.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Slides
+                  </a>
+                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <a 
+                    href="https://youtu.be/JySnGxFNkAo" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-red-600 hover:text-red-800 underline"
+                  >
+                    Video
+                  </a>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">31</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">7-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
+                <td className="border border-slate-300 px-4 py-2">Homework 6 - Data Cleaning</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
