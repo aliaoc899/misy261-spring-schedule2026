@@ -12,7 +12,7 @@ const downloadTableAsPDF = () => {
     ["Session", "Date", "Day", "Topic", "Lectures", "Recordings", "Assignments"],
     ["1", "27-Aug", "Wed", "Syllabus Review", `<a href="./Syllabus- MISY 261-Fall 2025.pdf" target="_blank">Syllabus</a>`, "-", "-"],
     ["2", "29-Aug", "Fri", "Business Processes - ERP", "-", "-", "-"],
-    ["-", "-", "Monday", "Labor Day Holiday", "-", "-", "-"],
+    ["__LABOR_DAY__"],
     ["3", "3-Sep", "Wed", "Introduction to Database", `<a href="https://claude.ai/public/artifacts/d6a280f3-a186-4add-8b6e-b90b9abc6d1e" target="_blank">Link</a>`, "-", "-"],
     ["4", "5-Sep", "Fri", "Introduction to Database: Table Design, Primary Keys, Data Types", `<a href="https://aliaoc899.github.io/Session-3-Slides/" target="_blank">Link</a>`, `<a href="https://youtu.be/7vJvlM04ScI" target="_blank">Video</a>`, "-"],
     ["5", "8-Sep", "Mon", "Introduction to Database: Table Design, Primary Keys, Data Types", `<a href="https://aliaoc899.github.io/misy261-Day-5/" target="_blank">Link</a>`, `<a href="https://youtu.be/G7hXF8hZJxM" target="_blank">Video</a>`, "-"],
@@ -29,7 +29,7 @@ const downloadTableAsPDF = () => {
     ["16", "3-Oct", "Fri", "Access: Practice Lab - Midterm Review - Travel Light", "-", `<a href="https://www.youtube.com/watch?v=oNr2pA9OuMs" target="_blank">Video</a>`, "-"],
     ["17", "6-Oct", "Mon", "Midterm Exam 1: Access Query Design", "-", "-", "-"],
     ["18", "8-Oct", "Wed", "Tableau - App Instalation and Product Key Instructions", "-", "-", "-"],
-    ["19", "10-Oct", "Fri", "Blue Hen Re-Coop Day; Classes Suspended", "-", "-", "-"],
+    ["__RECOOP_DAY__"],
   ["20", "13-Oct", "Mon", "Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/GcdvaVvncWA" target="_blank">Video</a>`, "-"],
     ["21", "15-Oct", "Wed", "Tableau: Dual Axis, Line, Bubble Charts", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/-Un07YuUjfw" target="_blank">Video</a>`, "-"],
   ["22", "17-Oct", "Fri", "Tableau: Chart Design and Dashboard Design", `<a href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" target="_blank">Slides</a>`, `<a href="https://youtu.be/TCpvFJxU_yA" target="_blank">Video</a>`, "Assignment 4"],
@@ -48,9 +48,7 @@ const downloadTableAsPDF = () => {
     ["35", "17-Nov", "Mon", "Midterm Exam 2: Tableau & Excel Data Analytics", "-", "-", "-"],
     ["36", "19-Nov", "Wed", "Final Project: Phase 1 - Excel Data Cleaning and Data Preparation", "-", "-", "-"],
     ["37", "21-Nov", "Fri", "Final Project: Phase 1 - Excel Data Cleaning and Data Preparation", "-", "-", "-"],
-    ["-", "-", "Mon", "Fall Break", "-", "-", "-"],
-    ["-", "-", "Wed", "Fall Break", "-", "-", "-"],
-    ["-", "-", "Fri", "Fall Break", "-", "-", "-"],
+    ["__FALL_BREAK__"],
     ["38", "1-Dec", "Mon", "Final Project: Phase 2 - Excel Data Analytics", "-", "-", "-"],
     ["39", "3-Dec", "Wed", "Final Project: Phase 3 - Access Query Design", "-", "-", "-"],
     ["40", "5-Dec", "Fri", "Final Project: Phase 4 - Tableau Data Visualization and Dashboard Design", "-", "-", "-"],
@@ -71,6 +69,8 @@ const downloadTableAsPDF = () => {
         tr:nth-child(even) { background-color: #f9f9f9; }
         .week-col, .date-col, .day-col { text-align: center; }
         .topic-col { text-align: left; max-width: 300px; }
+        .break-row { background-color: #fff7ed; }
+        .break-cell { text-align: center; color: #92400e; font-weight: 600; }
         a { color: #2563eb; text-decoration: underline; }
         a:hover { color: #1d4ed8; }
         @media print {
@@ -93,16 +93,27 @@ const downloadTableAsPDF = () => {
           </tr>
         </thead>
         <tbody>
-          ${tableRows.slice(1).map(row => 
-            `<tr>${row.map((cell, index) => {
+          ${tableRows.slice(1).map(row => {
+            if (row.length === 1) {
+              if (row[0] === "__FALL_BREAK__") {
+                return `<tr class="break-row"><td class="break-cell topic-col" colspan="7">🍂 Fall Break (Oct 14–18)</td></tr>`;
+              }
+              if (row[0] === "__LABOR_DAY__") {
+                return `<tr class="break-row"><td class="break-cell topic-col" colspan="7">🌞 Labor Day Holiday — No classes</td></tr>`;
+              }
+              if (row[0] === "__RECOOP_DAY__") {
+                return `<tr class="break-row"><td class="break-cell topic-col" colspan="7">🪶 Blue Hen Re-Coop Day (Oct 10) — Classes suspended</td></tr>`;
+              }
+            }
+            return `<tr>${row.map((cell, index) => {
               let className = '';
               if (index === 0) className = 'week-col';
               else if (index === 1) className = 'date-col';
               else if (index === 2) className = 'day-col';
               else if (index === 3) className = 'topic-col';
               return `<td class="${className}">${cell}</td>`;
-            }).join('')}</tr>`
-          ).join('')}
+            }).join('')}</tr>`;
+          }).join('')}
         </tbody>
       </table>
       <script>
@@ -350,6 +361,9 @@ export default function ExampleApp() {
     medium: 'text-sm',
     large: 'text-base'
   };
+  const pillBase = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-1 transition-colors';
+  const linkPill = `${pillBase} bg-slate-100 hover:bg-slate-200 text-blue-700 focus:ring-blue-400`;
+  const videoPill = `${pillBase} bg-rose-50 hover:bg-rose-100 text-red-700 focus:ring-rose-300`;
 
   // Centered Title Slide (hero style)
   const TitleSlide = () => (
@@ -514,31 +528,38 @@ export default function ExampleApp() {
         </div>
 
         <div className="overflow-x-auto">
-          <table className={`w-full border-collapse border border-slate-300 ${fontSizeClasses[fontSize]}`} role="table" aria-label="MISY261 course schedule with sessions, dates, topics, and resources">
+          <table
+            className={`w-full border-collapse border border-slate-300 ${fontSizeClasses[fontSize]} transition-colors [tbody tr:hover]:bg-white [tbody tr:focus-within]:bg-white [tbody tr:focus-within]:outline [tbody tr:focus-within]:outline-2 [tbody tr:focus-within]:outline-slate-300`}
+            role="table"
+            aria-label="MISY261 course schedule with sessions, dates, topics, and resources"
+          >
             <thead>
-              <tr className="bg-slate-100">
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Session</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Date</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Day</th>
-                <th className="border border-slate-300 px-4 py-2 text-center font-semibold" scope="col">Topic</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Lectures</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Recordings</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Assignments</th>
+              <tr className="bg-blue-100 text-blue-900 uppercase tracking-wide">
+                <th className="border border-slate-200 px-3 py-2 text-center font-semibold" scope="col">Session</th>
+                <th className="border border-slate-200 px-3 py-2 text-center font-semibold" scope="col">Date</th>
+                <th className="border border-slate-200 px-3 py-2 text-center font-semibold" scope="col">Day</th>
+                <th className="border border-slate-200 px-4 py-2 text-center font-semibold" scope="col">Topic</th>
+                <th className="border border-slate-200 px-3 py-2 text-center font-semibold" scope="col">Lectures</th>
+                <th className="border border-slate-200 px-3 py-2 text-center font-semibold" scope="col">Recordings</th>
+                <th className="border border-slate-200 px-3 py-2 text-center font-semibold" scope="col">Assignments</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="[&>tr]:transition-colors [&>tr:hover]:bg-white [&>tr:focus-within]:bg-white [&>tr:focus-within]:outline [&>tr:focus-within]:outline-2 [&>tr:focus-within]:outline-slate-300">
               <tr tabIndex={0} role="row" className="focus:outline-none focus:ring-2 focus:ring-emerald-500">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">1</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">27-Aug</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">Syllabus Review</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a href="./Syllabus- MISY 261-Fall 2025.pdf" 
-                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
-                     target="_blank" rel="noopener noreferrer"
-                     download
-                     aria-label="Download syllabus PDF for session 1">
-                    Syllabus
+                  <a
+                    href="./Syllabus- MISY 261-Fall 2025.pdf"
+                    className={linkPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    aria-label="Download syllabus PDF for session 1"
+                  >
+                    📄 Syllabus
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No video available">-</td>
@@ -553,26 +574,25 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-slate-50">
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Monday</td>
-                <td className="border border-slate-300 px-4 py-2 font-semibold">Labor Day Holiday</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              <tr className="bg-amber-50">
+                <td className="border border-slate-300 px-4 py-3 text-center font-semibold text-amber-800 text-base" colSpan={7}>
+                  🌞 Labor Day Holiday — No classes
+                </td>
               </tr>
-              <tr tabIndex={0} role="row" className="bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+              <tr tabIndex={0} role="row" className="bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 border-t-2 border-slate-300">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">3</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">3-Sep</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗃️ Introduction to Database</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a href="https://claude.ai/public/artifacts/d6a280f3-a186-4add-8b6e-b90b9abc6d1e" 
-                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
-                     target="_blank" rel="noopener noreferrer"
-                     aria-label="View presentation for session 3: Introduction to Database">
-                    Link
+                  <a
+                    href="https://claude.ai/public/artifacts/d6a280f3-a186-4add-8b6e-b90b9abc6d1e"
+                    className={linkPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View presentation for session 3: Introduction to Database"
+                  >
+                    🔗 Link
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No video available">-</td>
@@ -584,19 +604,25 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗃️ Introduction to Database: Table Design, Primary Keys, Data Types</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a href="https://aliaoc899.github.io/Session-3-Slides/" 
-                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
-                     target="_blank" rel="noopener noreferrer"
-                     aria-label="View presentation slides for session 4: Introduction to Database">
-                    Link
+                  <a
+                    href="https://aliaoc899.github.io/Session-3-Slides/"
+                    className={linkPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View presentation slides for session 4: Introduction to Database"
+                  >
+                    🔗 Link
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a href="https://youtu.be/7vJvlM04ScI" 
-                     className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1" 
-                     target="_blank" rel="noopener noreferrer"
-                     aria-label="Watch YouTube video for session 4: Introduction to Database">
-                    Video
+                  <a
+                    href="https://youtu.be/7vJvlM04ScI"
+                    className={videoPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Watch YouTube video for session 4: Introduction to Database"
+                  >
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
@@ -607,17 +633,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗃️ Introduction to Database: Table Design, Primary Keys, Data Types</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a href="https://aliaoc899.github.io/misy261-Day-5/" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Link
+                  <a
+                    href="https://aliaoc899.github.io/misy261-Day-5/"
+                    className={linkPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🔗 Link
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a href="https://youtu.be/G7hXF8hZJxM" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Video
+                  <a
+                    href="https://youtu.be/G7hXF8hZJxM"
+                    className={videoPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -628,41 +660,53 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗃️ Introduction to Database: Table Design, Primary Keys, Data Types</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a href="https://aliaoc899.github.io/misy261-Day-5/" 
-                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
-                     target="_blank" rel="noopener noreferrer"
-                     aria-label="View presentation slides for session 6">
-                    Link
+                  <a
+                    href="https://aliaoc899.github.io/misy261-Day-5/"
+                    className={linkPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View presentation slides for session 6"
+                  >
+                    🔗 Link
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a href="https://youtu.be/K-14u7X4AMo" 
-                     className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1" 
-                     target="_blank" rel="noopener noreferrer"
-                     aria-label="Watch YouTube video for session 6">
+                  <a
+                    href="https://youtu.be/K-14u7X4AMo"
+                    className={videoPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Watch YouTube video for session 6"
+                  >
                     🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center font-medium text-purple-700" role="cell">📝 Assignment 1</td>
               </tr>
-              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 border-t-2 border-slate-300">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">7</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">12-Sep</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access - Part 1: Introduction to Database and Query Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a href="https://aliaoc899.github.io/misy261-Day-7" 
-                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
-                     target="_blank" rel="noopener noreferrer"
-                     aria-label="View presentation for session 7: Access Part 1">
-                    Link
+                  <a
+                    href="https://aliaoc899.github.io/misy261-Day-7"
+                    className={linkPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View presentation for session 7: Access Part 1"
+                  >
+                    🔗 Link
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a href="https://youtu.be/bSbinHpCIHM" 
-                     className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1" 
-                     target="_blank" rel="noopener noreferrer"
-                     aria-label="Watch YouTube video for session 7">
+                  <a
+                    href="https://youtu.be/bSbinHpCIHM"
+                    className={videoPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Watch YouTube video for session 7"
+                  >
                     🎥 Video
                   </a>
                 </td>
@@ -674,17 +718,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access - Part 1: Introduction to Database and Query Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a href="https://aliaoc899.github.io/misy261-Day-7" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Link
+                  <a
+                    href="https://aliaoc899.github.io/misy261-Day-7"
+                    className={linkPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🔗 Link
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a href="https://youtu.be/awnMaYoFPaY" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Video
+                  <a
+                    href="https://youtu.be/awnMaYoFPaY"
+                    className={videoPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -695,17 +745,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access - Part 2: Criteria, Filtering the Query Results</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Link
+                  <a
+                    href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2"
+                    className={linkPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🔗 Link
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a href="https://youtu.be/h8TZhnvtVJI" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Video
+                  <a
+                    href="https://youtu.be/h8TZhnvtVJI"
+                    className={videoPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -716,17 +772,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access - Part 2: Criteria, Filtering the Query Results</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2-2/" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Link
+                  <a
+                    href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2-2/"
+                    className={linkPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🔗 Link
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a href="https://youtu.be/yDeOE5cTvKk" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Video
+                  <a
+                    href="https://youtu.be/yDeOE5cTvKk"
+                    className={videoPill}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center font-medium text-purple-700" role="cell">📝 Assignment 2</td>
@@ -737,23 +799,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Create Calculated Fields and Extract From Date Field, Format Function</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/misy261-Day-10-CreateCalculatedFields/" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/misy261-Day-10-CreateCalculatedFields/"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://www.youtube.com/watch?v=SGu63RWrQu0" 
-                    target="_blank" 
+                  <a
+                    href="https://www.youtube.com/watch?v=SGu63RWrQu0"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -764,23 +826,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Total Queries</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://www.youtube.com/watch?v=wS2nSuQKSLo" 
-                    target="_blank" 
+                  <a
+                    href="https://www.youtube.com/watch?v=wS2nSuQKSLo"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -791,23 +853,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Total Queries</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://www.youtube.com/watch?v=P0BhynX-W8A" 
-                    target="_blank" 
+                  <a
+                    href="https://www.youtube.com/watch?v=P0BhynX-W8A"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Assignment 3</td>
@@ -819,12 +881,13 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Practice Lab - Melbourne Housing</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No slides available">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a 
-                    href="https://www.youtube.com/watch?v=Qvu7gtRqn38" 
-                    target="_blank" 
+                  <a
+                    href="https://www.youtube.com/watch?v=Qvu7gtRqn38"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1"
-                    aria-label="Watch YouTube video for session 14: Practice Lab">
+                    className={videoPill}
+                    aria-label="Watch YouTube video for session 14: Practice Lab"
+                  >
                     🎥 Video
                   </a>
                 </td>
@@ -846,13 +909,13 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Practice Lab - Midterm Review - Travel Light</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://www.youtube.com/watch?v=oNr2pA9OuMs" 
-                    target="_blank" 
+                  <a
+                    href="https://www.youtube.com/watch?v=oNr2pA9OuMs"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -866,7 +929,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No video available">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
               </tr>
-              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 border-t-2 border-slate-300">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">18</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">8-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
@@ -875,14 +938,10 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-slate-50">
-                <td className="border border-slate-300 px-3 py-2 text-center">19</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">10-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2 font-semibold">Blue Hen Re-Coop Day; Classes Suspended</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              <tr className="bg-amber-50">
+                <td className="border border-slate-300 px-4 py-3 text-center font-semibold text-amber-800 text-base" colSpan={7}>
+                  🪶 Blue Hen Re-Coop Day (Oct 10) — Classes suspended
+                </td>
               </tr>
               <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">20</td>
@@ -890,22 +949,22 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📊 Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
+                    className={linkPill}
                     aria-label="View presentation slides for session 20: Tableau Data Visualization"
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a 
-                    href="https://youtu.be/GcdvaVvncWA" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/GcdvaVvncWA"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1"
+                    className={videoPill}
                     aria-label="Watch YouTube video for session 20"
                   >
                     🎥 Video
@@ -919,23 +978,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Dual Axis, Line, Bubble Charts</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://youtu.be/-Un07YuUjfw" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/-Un07YuUjfw"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -946,23 +1005,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Chart Design and Dashboard Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://youtu.be/TCpvFJxU_yA" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/TCpvFJxU_yA"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Assignment 4</td>
@@ -973,23 +1032,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Calculated Fields, Parameters & Filters</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://youtu.be/Fgb4Fdci0-8" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/Fgb4Fdci0-8"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -1000,23 +1059,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Calculated Fields, Reference Lines</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://youtu.be/CazgJFFRyIU" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/CazgJFFRyIU"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -1027,23 +1086,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Dashboard Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://youtu.be/naS5VKVtz_I" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/naS5VKVtz_I"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Assignment 5</td>
@@ -1054,41 +1113,41 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Dashboard Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr tabIndex={0} role="row" className="bg-teal-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+              <tr tabIndex={0} role="row" className="bg-teal-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 border-t-2 border-slate-300">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">27</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">29-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📈 Excel: Data Cleaning</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/data-cleaning-lookup-practice.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/data-cleaning-lookup-practice.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://youtu.be/X5Y7AZ-cMws" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/X5Y7AZ-cMws"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -1099,23 +1158,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📈 Excel: Data Cleaning</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://youtu.be/qHqxfRbOUrA" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/qHqxfRbOUrA"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -1126,23 +1185,23 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📈 Excel: Data Cleaning and Preparation</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://youtu.be/ihf17HrgI-4" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/ihf17HrgI-4"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -1153,22 +1212,22 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📈 Excel: Pivot Tables</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-pivot.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-pivot.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
+                    className={linkPill}
                     aria-label="View presentation slides for session 30: Excel Pivot Tables"
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a 
-                    href="https://youtu.be/JySnGxFNkAo" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/JySnGxFNkAo"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1"
+                    className={videoPill}
                     aria-label="Watch YouTube video for session 30"
                   >
                     🎥 Video
@@ -1182,14 +1241,14 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📈 Assignment 6 - Kaggle Housing Prices Dataset</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/housing-prices-practice.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/housing-prices-practice.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
+                    className={linkPill}
                     aria-label="View presentation slides for Assignment 6"
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No video available">-</td>
@@ -1201,22 +1260,22 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
                 <td className="border border-slate-300 px-4 py-2" role="cell">📈 Excel: Data Analytics</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/bird-strikes-practice.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/bird-strikes-practice.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
+                    className={linkPill}
                     aria-label="View presentation slides for session 32: Excel Data Analytics"
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a 
-                    href="https://youtu.be/NAoGKEnF1xw" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/NAoGKEnF1xw"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1"
+                    className={videoPill}
                     aria-label="Watch YouTube video for session 32"
                   >
                     🎥 Video
@@ -1231,13 +1290,13 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-4 py-2">Midterm Exam 2 Review</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No slides available">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://youtu.be/JLSQ5G06ZME" 
-                    target="_blank" 
+                  <a
+                    href="https://youtu.be/JLSQ5G06ZME"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className={videoPill}
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -1248,13 +1307,13 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
                 <td className="border border-slate-300 px-4 py-2">Midterm Exam 2 Review</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a 
-                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-tableau-practice.html" 
-                    target="_blank" 
+                  <a
+                    href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-tableau-practice.html"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className={linkPill}
                   >
-                    Slides
+                    📄 Slides
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -1269,7 +1328,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr tabIndex={0} role="row" className="bg-orange-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+              <tr tabIndex={0} role="row" className="bg-orange-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 border-t-2 border-slate-300">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">36</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">19-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
@@ -1287,32 +1346,10 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-slate-50">
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2 font-semibold">Fall Break</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-              </tr>
-              <tr className="bg-slate-50">
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2 font-semibold">Fall Break</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-              </tr>
-              <tr className="bg-slate-50">
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2 font-semibold">Fall Break</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              <tr className="bg-amber-50">
+                <td className="border border-slate-300 px-4 py-3 text-center font-semibold text-amber-800 text-base" colSpan={7}>
+                  🍂 Fall Break (Oct 14–18) — No classes
+                </td>
               </tr>
               <tr tabIndex={0} role="row" className="bg-orange-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">38</td>
