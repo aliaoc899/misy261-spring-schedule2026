@@ -370,7 +370,7 @@ export default function ExampleApp() {
     <div className="py-8">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-extrabold text-slate-900">MISY261: Business Information Systems</h1>
-        <div className="text-xl text-slate-700 font-semibold mt-1">University of Delaware</div>
+        <div className="text-xl text-blue-600/30 font-semibold mt-1">University of Delaware - Fall 2025</div>
         <div className="mt-2 text-2xl uppercase tracking-widest text-emerald-700 font-semibold">Fall 2025</div>
         <div className="mt-4 flex flex-wrap justify-center items-center gap-4">
           <a href="https://lerner.udel.edu/faculty-staff-directory/ali-simaei" 
