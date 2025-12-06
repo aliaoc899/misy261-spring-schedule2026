@@ -288,7 +288,69 @@ function TablesSlide() {
   );
 }
 
+// Helper function to determine row styling and icon based on topic
+const getRowStyling = (topic: string) => {
+  const topicLower = topic.toLowerCase();
+  
+  // Exam rows - Yellow background
+  if (topicLower.includes('exam') || topicLower.includes('midterm')) {
+    return { bg: 'bg-yellow-50', icon: '📝', type: 'exam' };
+  }
+  
+  // Homework rows - Light purple background
+  if (topicLower.includes('homework')) {
+    return { bg: 'bg-purple-50', icon: '📝', type: 'homework' };
+  }
+  
+  // Review sessions - Light amber background
+  if (topicLower.includes('review')) {
+    return { bg: 'bg-amber-50', icon: '🔍', type: 'review' };
+  }
+  
+  // Practice/Lab sessions - Light green background
+  if (topicLower.includes('practice') || topicLower.includes('lab')) {
+    return { bg: 'bg-green-50', icon: '🧪', type: 'practice' };
+  }
+  
+  // Tableau sessions - Light blue background
+  if (topicLower.includes('tableau')) {
+    return { bg: 'bg-blue-50', icon: '📊', type: 'tableau' };
+  }
+  
+  // Excel sessions - Light teal background
+  if (topicLower.includes('excel') || topicLower.includes('pivot')) {
+    return { bg: 'bg-teal-50', icon: '📈', type: 'excel' };
+  }
+  
+  // Access sessions - Light pink background
+  if (topicLower.includes('access')) {
+    return { bg: 'bg-pink-50', icon: '🗄️', type: 'access' };
+  }
+  
+  // Database sessions - Light indigo background
+  if (topicLower.includes('database')) {
+    return { bg: 'bg-indigo-50', icon: '🗃️', type: 'database' };
+  }
+  
+  // Holiday/Break rows - Light gray background
+  if (topicLower.includes('holiday') || topicLower.includes('break') || topicLower.includes('suspended')) {
+    return { bg: 'bg-slate-100', icon: '🏖️', type: 'break' };
+  }
+  
+  // Default lecture sessions - White background
+  return { bg: '', icon: '📚', type: 'lecture' };
+};
+
 export default function ExampleApp() {
+  // Font size control state
+  const [fontSize, setFontSize] = React.useState<'small' | 'medium' | 'large'>('medium');
+
+  const fontSizeClasses = {
+    small: 'text-xs',
+    medium: 'text-sm',
+    large: 'text-base'
+  };
+
   // Centered Title Slide (hero style)
   const TitleSlide = () => (
     <div className="py-8">
@@ -298,7 +360,8 @@ export default function ExampleApp() {
         <div className="mt-4">
           <a href="https://lerner.udel.edu/faculty-staff-directory/ali-simaei" 
              className="text-blue-600 hover:text-blue-800 underline text-lg font-medium" 
-             target="_blank" rel="noopener noreferrer">
+             target="_blank" rel="noopener noreferrer"
+             aria-label="View instructor profile for Ali Simaei">
             Instructor Profile
           </a>
         </div>
@@ -306,47 +369,118 @@ export default function ExampleApp() {
       </div>
       
       <div className="max-w-6xl mx-auto">
-        <div className="mb-4 flex justify-between items-center">
-          <h2 className="text-sm font-medium text-slate-600 uppercase tracking-wide">Course Schedule</h2>
-          <button 
-            onClick={downloadTableAsPDF}
-            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-2"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Download PDF
-          </button>
+        <div className="mb-4 flex justify-between items-center flex-wrap gap-4">
+          <div>
+            <h2 className="text-sm font-medium text-slate-600 uppercase tracking-wide mb-2">Course Schedule</h2>
+            {/* Color Legend */}
+            <div className="flex flex-wrap gap-2 text-xs">
+              <div className="flex items-center gap-1 px-2 py-1 bg-indigo-50 rounded border border-indigo-200">
+                <span>🗃️</span>
+                <span>Database</span>
+              </div>
+              <div className="flex items-center gap-1 px-2 py-1 bg-pink-50 rounded border border-pink-200">
+                <span>🗄️</span>
+                <span>Access</span>
+              </div>
+              <div className="flex items-center gap-1 px-2 py-1 bg-blue-50 rounded border border-blue-200">
+                <span>📊</span>
+                <span>Tableau</span>
+              </div>
+              <div className="flex items-center gap-1 px-2 py-1 bg-teal-50 rounded border border-teal-200">
+                <span>📈</span>
+                <span>Excel</span>
+              </div>
+              <div className="flex items-center gap-1 px-2 py-1 bg-green-50 rounded border border-green-200">
+                <span>🧪</span>
+                <span>Practice</span>
+              </div>
+              <div className="flex items-center gap-1 px-2 py-1 bg-amber-50 rounded border border-amber-200">
+                <span>🔍</span>
+                <span>Review</span>
+              </div>
+              <div className="flex items-center gap-1 px-2 py-1 bg-yellow-50 rounded border border-yellow-200">
+                <span>📝</span>
+                <span>Exam</span>
+              </div>
+              <div className="flex items-center gap-1 px-2 py-1 bg-purple-50 rounded border border-purple-200">
+                <span>📝</span>
+                <span>Homework</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            {/* Font Size Controls */}
+            <div className="flex items-center gap-2 bg-slate-100 rounded-lg px-3 py-1.5" role="group" aria-label="Font size controls">
+              <span className="text-xs text-slate-600 font-medium">Font:</span>
+              <button 
+                onClick={() => setFontSize('small')}
+                className={`px-2 py-1 rounded text-xs font-medium transition-colors ${fontSize === 'small' ? 'bg-emerald-600 text-white' : 'bg-white text-slate-700 hover:bg-slate-200'}`}
+                aria-label="Small font size"
+                aria-pressed={fontSize === 'small'}
+              >
+                A
+              </button>
+              <button 
+                onClick={() => setFontSize('medium')}
+                className={`px-2 py-1 rounded text-sm font-medium transition-colors ${fontSize === 'medium' ? 'bg-emerald-600 text-white' : 'bg-white text-slate-700 hover:bg-slate-200'}`}
+                aria-label="Medium font size"
+                aria-pressed={fontSize === 'medium'}
+              >
+                A
+              </button>
+              <button 
+                onClick={() => setFontSize('large')}
+                className={`px-2 py-1 rounded text-base font-medium transition-colors ${fontSize === 'large' ? 'bg-emerald-600 text-white' : 'bg-white text-slate-700 hover:bg-slate-200'}`}
+                aria-label="Large font size"
+                aria-pressed={fontSize === 'large'}
+              >
+                A
+              </button>
+            </div>
+
+            <button 
+              onClick={downloadTableAsPDF}
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-2"
+              aria-label="Download course schedule as PDF"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download PDF
+            </button>
+          </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse border border-slate-300">
+          <table className={`w-full border-collapse border border-slate-300 ${fontSizeClasses[fontSize]}`} role="table" aria-label="MISY261 course schedule with sessions, dates, topics, and resources">
             <thead>
               <tr className="bg-slate-100">
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Session</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Date</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Day</th>
-                <th className="border border-slate-300 px-4 py-2 text-center font-semibold">Topic</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Presentation Link</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">YouTube Link</th>
-                <th className="border border-slate-300 px-3 py-2 text-center font-semibold">Homework</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Session</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Date</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Day</th>
+                <th className="border border-slate-300 px-4 py-2 text-center font-semibold" scope="col">Topic</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Presentation Link</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">YouTube Link</th>
+                <th className="border border-slate-300 px-3 py-2 text-center font-semibold" scope="col">Homework</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">1</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">27-Aug</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Syllabus Review</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">1</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">27-Aug</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">Syllabus Review</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a href="./Syllabus- MISY 261-Fall 2025.pdf" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
+                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
                      target="_blank" rel="noopener noreferrer"
-                     download>
+                     download
+                     aria-label="Download syllabus PDF for session 1">
                     Syllabus
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No video available">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 px-3 py-2 text-center">2</td>
@@ -366,47 +500,50 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">3</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">3-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Introduction to Database</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">3</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">3-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗃️ Introduction to Database</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a href="https://claude.ai/public/artifacts/d6a280f3-a186-4add-8b6e-b90b9abc6d1e" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
+                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="View presentation for session 3: Introduction to Database">
                     Link
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No video available">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">4</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">5-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Introduction to Database: Table Design, Primary Keys, Data Types</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">4</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">5-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗃️ Introduction to Database: Table Design, Primary Keys, Data Types</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a href="https://aliaoc899.github.io/Session-3-Slides/" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
+                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="View presentation slides for session 4: Introduction to Database">
                     Link
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a href="https://youtu.be/7vJvlM04ScI" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
+                     className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1" 
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="Watch YouTube video for session 4: Introduction to Database">
                     Video
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">5</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">8-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Introduction to Database: Table Design, Primary Keys, Data Types</td>
+              <tr tabIndex={0} role="row" className="bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">5</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">8-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗃️ Introduction to Database: Table Design, Primary Keys, Data Types</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a href="https://aliaoc899.github.io/misy261-Day-5/" 
                      className="text-blue-600 hover:text-blue-800 underline text-sm" 
@@ -423,59 +560,64 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">6</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">10-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Introduction to Database: Table Design, Primary Keys, Data Types</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">6</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">10-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗃️ Introduction to Database: Table Design, Primary Keys, Data Types</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a href="https://aliaoc899.github.io/misy261-Day-5/" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
+                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="View presentation slides for session 6">
                     Link
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a href="https://youtu.be/K-14u7X4AMo" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Video
+                     className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1" 
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="Watch YouTube video for session 6">
+                    🎥 Video
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a href="https://aliaoc899.github.io/homework-v3" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Homework 1
+                     className="text-purple-600 hover:text-purple-800 underline focus:outline-none focus:ring-2 focus:ring-purple-500 rounded px-1 font-medium" 
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="View Homework 1 assignment">
+                    📝 Homework 1
                   </a>
                 </td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">7</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">12-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Access - Part 1: Introduction to Database and Query Design</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">7</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">12-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access - Part 1: Introduction to Database and Query Design</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a href="https://aliaoc899.github.io/misy261-Day-7" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
+                     className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1" 
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="View presentation for session 7: Access Part 1">
                     Link
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a href="https://youtu.be/bSbinHpCIHM" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Video
+                     className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1" 
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="Watch YouTube video for session 7">
+                    🎥 Video
                   </a>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">8</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">15-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Access - Part 1: Introduction to Database and Query Design</td>
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">8</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">15-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access - Part 1: Introduction to Database and Query Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a href="https://aliaoc899.github.io/misy261-Day-7" 
                      className="text-blue-600 hover:text-blue-800 underline text-sm" 
@@ -492,11 +634,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">9</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">17-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Access - Part 2: Criteria, Filtering the Query Results</td>
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">9</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">17-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access - Part 2: Criteria, Filtering the Query Results</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2" 
                      className="text-blue-600 hover:text-blue-800 underline text-sm" 
@@ -513,11 +655,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">10</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">19-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Access - Part 2: Criteria, Filtering the Query Results</td>
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">10</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">19-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access - Part 2: Criteria, Filtering the Query Results</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2-2/" 
                      className="text-blue-600 hover:text-blue-800 underline text-sm" 
@@ -540,11 +682,11 @@ export default function ExampleApp() {
                   </a>
                 </td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">11</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">22-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Create Calculated Fields and Extract From Date Field, Format Function</td>
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">11</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">22-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Create Calculated Fields and Extract From Date Field, Format Function</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/misy261-Day-10-CreateCalculatedFields/" 
@@ -567,11 +709,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">12</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">24-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Total Queries</td>
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">12</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">24-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Total Queries</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" 
@@ -594,11 +736,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">13</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">26-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Total Queries</td>
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">13</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">26-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Total Queries</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" 
@@ -621,38 +763,38 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Homework 3</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">14</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">29-Sep</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab - Melbourne Housing</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="bg-green-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">14</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">29-Sep</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🧪 Access: Practice Lab - Melbourne Housing</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No slides available">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a 
                     href="https://www.youtube.com/watch?v=Qvu7gtRqn38" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
-                  >
-                    Video
+                    className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1"
+                    aria-label="Watch YouTube video for session 14: Practice Lab">
+                    🎥 Video
                   </a>
                 </td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
+              </tr>
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">15</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">1-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Practice Lab - Melbourne Housing</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">15</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">1-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab - Melbourne Housing</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-              </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">16</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">3-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Access: Practice Lab - Midterm Review - Travel Light</td>
+              <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">16</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">3-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🗄️ Access: Practice Lab - Midterm Review - Travel Light</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
@@ -666,20 +808,20 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-yellow-50">
-                <td className="border border-slate-300 px-3 py-2 text-center">17</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">6-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2 font-semibold">Midterm Exam 1: Access Query Design</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              <tr tabIndex={0} role="row" className="bg-yellow-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">17</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">6-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold" role="cell">📝 Midterm Exam 1: Access Query Design</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No slides available">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No video available">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">18</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">8-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau - App Instalation and Product Key Instructions</td>
+              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">18</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">8-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau - App Instalation and Product Key Instructions</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -693,38 +835,40 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">20</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">13-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">20</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">13-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📊 Introduction to Data Visualization in Tableau : Bar/Pie/Map/Treemaps</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
+                    aria-label="View presentation slides for session 20: Tableau Data Visualization"
                   >
                     Slides
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a 
                     href="https://youtu.be/GcdvaVvncWA" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1"
+                    aria-label="Watch YouTube video for session 20"
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">21</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">15-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Dual Axis, Line, Bubble Charts</td>
+              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">21</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">15-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Dual Axis, Line, Bubble Charts</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary.html" 
@@ -747,11 +891,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">22</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">17-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Chart Design and Dashboard Design</td>
+              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">22</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">17-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Chart Design and Dashboard Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part2.html" 
@@ -774,11 +918,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Homework 4</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">23</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">20-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Calculated Fields, Parameters & Filters</td>
+              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">23</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">20-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Calculated Fields, Parameters & Filters</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html" 
@@ -801,11 +945,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">24</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">22-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Calculated Fields, Reference Lines</td>
+              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">24</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">22-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Calculated Fields, Reference Lines</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/tableau-master-summary-part3.html" 
@@ -828,11 +972,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">25</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">24-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Dashboard Design</td>
+              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">25</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">24-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Dashboard Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" 
@@ -855,11 +999,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Homework 5</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">26</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">27-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau: Dashboard Design</td>
+              <tr tabIndex={0} role="row" className="bg-blue-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">26</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">27-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📊 Tableau: Dashboard Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/hotel-management-dashboard.html" 
@@ -873,11 +1017,11 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">27</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">29-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Cleaning</td>
+              <tr tabIndex={0} role="row" className="bg-teal-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">27</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">29-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📈 Excel: Data Cleaning</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/data-cleaning-lookup-practice.html" 
@@ -900,11 +1044,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">28</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">31-Oct</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Cleaning</td>
+              <tr tabIndex={0} role="row" className="bg-teal-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">28</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">31-Oct</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📈 Excel: Data Cleaning</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" 
@@ -927,11 +1071,11 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">29</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">3-Nov</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Data Cleaning and Preparation</td>
+              <tr tabIndex={0} role="row" className="bg-teal-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">29</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">3-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📈 Data Cleaning and Preparation</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-practice.html" 
@@ -954,84 +1098,89 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">30</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">5-Nov</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Pivot Tables</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="bg-teal-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">30</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">5-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📈 Excel: Pivot Tables</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/hospital-admissions-pivot.html" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
+                    aria-label="View presentation slides for session 30: Excel Pivot Tables"
                   >
                     Slides
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a 
                     href="https://youtu.be/JySnGxFNkAo" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1"
+                    aria-label="Watch YouTube video for session 30"
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">31</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">7-Nov</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Fri</td>
-                <td className="border border-slate-300 px-4 py-2">Homework 6 - Data Cleaning</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="bg-purple-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">31</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">7-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Fri</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📝 Homework 6 - Data Cleaning</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/housing-prices-practice.html" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
+                    aria-label="View presentation slides for Homework 6"
                   >
                     Slides
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No video available">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">32</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">10-Nov</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2">Excel: Data Analytics</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+              <tr tabIndex={0} role="row" className="bg-teal-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">32</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">10-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Mon</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">📈 Excel: Data Analytics</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a 
                     href="https://aliaoc899.github.io/presentationTemplate-V2/bird-strikes-practice.html" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
+                    className="text-blue-600 hover:text-blue-800 underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
+                    aria-label="View presentation slides for session 32: Excel Data Analytics"
                   >
                     Slides
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
                   <a 
                     href="https://youtu.be/NAoGKEnF1xw" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 underline"
+                    className="text-red-600 hover:text-red-800 underline focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1"
+                    aria-label="Watch YouTube video for session 32"
                   >
-                    Video
+                    🎥 Video
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">33</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">12-Nov</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">Wed</td>
-                <td className="border border-slate-300 px-4 py-2">Tableau & Excel: Exam Review 1</td>
-                <td className="border border-slate-300 px-3 py-2 text-center">-</td>
+              <tr tabIndex={0} role="row" className="bg-amber-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">33</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">12-Nov</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">Wed</td>
+                <td className="border border-slate-300 px-4 py-2" role="cell">🔍 Tableau & Excel: Exam Review 1</td>
+                <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No slides available">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">
                   <a 
                     href="https://youtu.be/JLSQ5G06ZME" 
