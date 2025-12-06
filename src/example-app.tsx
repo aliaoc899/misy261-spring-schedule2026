@@ -16,11 +16,11 @@ const downloadTableAsPDF = () => {
     ["3", "3-Sep", "Wed", "Introduction to Database", `<a href="https://claude.ai/public/artifacts/d6a280f3-a186-4add-8b6e-b90b9abc6d1e" target="_blank">Link</a>`, "-", "-"],
     ["4", "5-Sep", "Fri", "Introduction to Database: Table Design, Primary Keys, Data Types", `<a href="https://aliaoc899.github.io/Session-3-Slides/" target="_blank">Link</a>`, `<a href="https://youtu.be/7vJvlM04ScI" target="_blank">Video</a>`, "-"],
     ["5", "8-Sep", "Mon", "Introduction to Database: Table Design, Primary Keys, Data Types", `<a href="https://aliaoc899.github.io/misy261-Day-5/" target="_blank">Link</a>`, `<a href="https://youtu.be/G7hXF8hZJxM" target="_blank">Video</a>`, "-"],
-    ["6", "10-Sep", "Wed", "Introduction to Database: Table Design, Primary Keys, Data Types", `<a href="https://aliaoc899.github.io/misy261-Day-5/" target="_blank">Link</a>`, `<a href="https://youtu.be/K-14u7X4AMo" target="_blank">Video</a>`, `<a href="https://aliaoc899.github.io/homework-v3" target="_blank">Assignment 1</a>`],
+    ["6", "10-Sep", "Wed", "Introduction to Database: Table Design, Primary Keys, Data Types", `<a href="https://aliaoc899.github.io/misy261-Day-5/" target="_blank">Link</a>`, `<a href="https://youtu.be/K-14u7X4AMo" target="_blank">Video</a>`, "Assignment 1"],
     ["7", "12-Sep", "Fri", "Access - Part 1: Introduction to Database and Query Design", `<a href="https://aliaoc899.github.io/misy261-Day-7" target="_blank">Link</a>`, `<a href="https://youtu.be/bSbinHpCIHM" target="_blank">Video</a>`, "-"],
     ["8", "15-Sep", "Mon", "Access - Part 1: Introduction to Database and Query Design", `<a href="https://aliaoc899.github.io/misy261-Day-7" target="_blank">Link</a>`, `<a href="https://youtu.be/awnMaYoFPaY" target="_blank">Video</a>`, "-"],
     ["9", "17-Sep", "Wed", "Access - Part 2: Criteria, Filtering the Query Results", `<a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2" target="_blank">Link</a>`, `<a href="https://youtu.be/h8TZhnvtVJI" target="_blank">Video</a>`, "-"],
-    ["10", "19-Sep", "Fri", "Access - Part 2: Criteria, Filtering the Query Results", `<a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2-2/" target="_blank">Link</a>`, `<a href="https://youtu.be/yDeOE5cTvKk" target="_blank">Video</a>`, `<a href="https://aliaoc899.github.io/misy261-Day-10-practice" target="_blank">Assignment 2</a>`],
+    ["10", "19-Sep", "Fri", "Access - Part 2: Criteria, Filtering the Query Results", `<a href="https://aliaoc899.github.io/https-aliaoc899.github.io-misy261-Access-Part2-2/" target="_blank">Link</a>`, `<a href="https://youtu.be/yDeOE5cTvKk" target="_blank">Video</a>`, "Assignment 2"],
     ["11", "22-Sep", "Mon", "Access: Create Calculated Fields and Extract From Date Field, Format Function", `<a href="https://aliaoc899.github.io/misy261-Day-10-CreateCalculatedFields/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=SGu63RWrQu0" target="_blank">Video</a>`, "-"],
     ["12", "24-Sep", "Wed", "Access: Total Queries (Sum, Count, Average)", `<a href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=wS2nSuQKSLo" target="_blank">Video</a>`, "-"],
     ["13", "26-Sep", "Fri", "Access: Total Queries (Sum, Count, Average)", `<a href="https://aliaoc899.github.io/misy261-Day-12-TotalQueries/" target="_blank">Slides</a>`, `<a href="https://www.youtube.com/watch?v=P0BhynX-W8A" target="_blank">Video</a>`, "Assignment 3"],
@@ -356,24 +356,31 @@ export default function ExampleApp() {
     <div className="py-8">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-extrabold text-slate-900">MISY261: Business Information Systems</h1>
+        <div className="text-xl text-slate-700 font-semibold mt-1">University of Delaware</div>
         <div className="mt-2 text-2xl uppercase tracking-widest text-emerald-700 font-semibold">Fall 2025</div>
-        <div className="mt-4">
+        <div className="mt-4 flex flex-wrap justify-center items-center gap-4">
           <a href="https://lerner.udel.edu/faculty-staff-directory/ali-simaei" 
-             className="text-blue-600 hover:text-blue-800 underline text-lg font-medium" 
+             className="text-blue-600 hover:text-blue-800 underline text-lg font-medium flex items-center gap-1.5" 
              target="_blank" rel="noopener noreferrer"
              aria-label="View instructor profile for Ali Simaei">
-            Instructor Profile
+            <span className="text-xl leading-none align-middle">👤</span>
+            <span>Instructor Profile</span>
+          </a>
+          <span className="text-slate-300">|</span>
+          <a href="mailto:asimae@udel.edu" className="text-blue-700 hover:text-blue-900 underline text-lg font-medium flex items-center gap-1.5" aria-label="Email Ali Simaei">
+            <span className="text-xl leading-none align-middle">✉️</span>
+            <span>asimae@udel.edu</span>
           </a>
         </div>
         
         {/* Office Hours */}
         <div className="mt-4 flex flex-wrap justify-center items-center gap-3 px-4 py-3">
           <span className="flex items-center gap-2 px-3 py-1.5 bg-orange-100 text-orange-900 rounded-full text-sm font-medium border border-orange-300">
-            <span>🕐</span>
+            <span className="text-lg leading-none align-middle">🕐</span>
             <span className="font-semibold">Office Hours: M, W, F: 10 – 11 AM</span>
           </span>
           <span className="flex items-center gap-2 px-3 py-1.5 bg-orange-100 text-orange-900 rounded-full text-sm font-medium border border-orange-300">
-            <span>📍</span>
+            <span className="text-lg leading-none align-middle">📍</span>
             <span className="font-semibold">Office Location: 004B - Purnell Hall</span>
           </span>
           <a 
@@ -382,26 +389,25 @@ export default function ExampleApp() {
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-orange-700 hover:text-orange-900 underline font-medium text-sm"
           >
-            <span>📅</span>
+            <span className="text-lg leading-none align-middle">📅</span>
             <span>Schedule Appointment (Zoom/In-Person)</span>
           </a>
         </div>
-        
         <div className="mt-6 mx-auto h-1 w-36 bg-emerald-700 rounded-full" />
       </div>
       
       <div className="max-w-6xl mx-auto">
         {/* Course Description */}
-        <div className="mb-6 px-4 py-4 bg-slate-100 rounded-lg border border-slate-300">
-          <h3 className="text-lg font-bold text-slate-900 mb-2">📚 Course Description</h3>
+        <div className="mb-8 px-4 py-4 bg-slate-100 rounded-lg border border-slate-200 shadow-sm">
+          <h3 className="text-xl font-bold text-emerald-800 mb-2">📚 Course Description</h3>
           <p className="text-slate-800 leading-relaxed text-sm">
             Introduction to management information systems. You will learn techniques for problem solving with business productivity tools and software. Emphasis on business applications. MISY261 focuses on how to use analytical strategies and tools for problem solving and data analysis. In this course, students will use the data analytics process to plan business objectives, understand data, prepare data for analysis, model and evaluate data, and communicate useful business insights.
           </p>
         </div>
 
         {/* Learning Outcomes */}
-        <div className="mb-6 px-4 py-4 bg-slate-200 rounded-lg border border-slate-400">
-          <h3 className="text-lg font-bold text-slate-900 mb-3">🎯 Learning Outcomes</h3>
+        <div className="mb-8 px-4 py-4 bg-slate-200 rounded-lg border border-slate-200 shadow-sm">
+          <h3 className="text-xl font-bold text-emerald-800 mb-3">🎯 Learning Outcomes</h3>
           <ol className="list-decimal list-inside space-y-2 text-slate-800 text-sm">
             <li>Understand business processes through tools such as flowcharts.</li>
             <li>ERP system to support business processes.</li>
@@ -413,48 +419,48 @@ export default function ExampleApp() {
         </div>
 
         {/* Course Evaluations */}
-        <div className="mb-6 px-4 py-4 bg-slate-300 rounded-lg border border-slate-500">
-          <h3 className="text-lg font-bold text-slate-900 mb-3">📊 Learning Assessments</h3>
+        <div className="mb-8 px-4 py-4 bg-slate-300 rounded-lg border border-slate-200 shadow-sm">
+          <h3 className="text-xl font-bold text-emerald-800 mb-3">📊 Learning Assessments</h3>
           <ul className="space-y-2 text-slate-900 text-sm">
             <li className="flex items-center gap-2">
-              <span className="text-purple-600">📝</span>
+              <span className="text-purple-600 text-lg leading-none align-middle">📝</span>
               <span><strong>6 Assignments</strong> - Weekly exercises to practice course concepts</span>
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-yellow-600">📋</span>
+              <span className="text-yellow-600 text-lg leading-none align-middle">📋</span>
               <span><strong>2 Midterm Exams</strong> - Assess understanding of Database/Access and Tableau/Excel</span>
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-orange-600">🎯</span>
+              <span className="text-orange-600 text-lg leading-none align-middle">🎯</span>
               <span><strong>Final Project with 4 Phases</strong> - Comprehensive project integrating all course tools</span>
             </li>
           </ul>
         </div>
 
         {/* Module Pills */}
-        <div className="mb-6 flex flex-wrap items-center gap-3 px-4 py-3 bg-slate-50 rounded-lg border border-slate-200">
+        <div className="mb-8 flex flex-wrap items-center gap-3 px-4 py-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm">
           <span className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-100 text-indigo-900 rounded-full text-sm font-medium">
-            <span>🗃️</span>
+            <span className="text-lg leading-none align-middle">🗃️</span>
             <span>Module 1: Database</span>
           </span>
           <span className="text-slate-400">|</span>
           <span className="flex items-center gap-1.5 px-3 py-1.5 bg-pink-100 text-pink-900 rounded-full text-sm font-medium">
-            <span>🗄️</span>
+            <span className="text-lg leading-none align-middle">🗄️</span>
             <span>Module 2: Access</span>
           </span>
           <span className="text-slate-400">|</span>
           <span className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-100 text-blue-900 rounded-full text-sm font-medium">
-            <span>📊</span>
+            <span className="text-lg leading-none align-middle">📊</span>
             <span>Module 3: Tableau</span>
           </span>
           <span className="text-slate-400">|</span>
           <span className="flex items-center gap-1.5 px-3 py-1.5 bg-teal-100 text-teal-900 rounded-full text-sm font-medium">
-            <span>📈</span>
+            <span className="text-lg leading-none align-middle">📈</span>
             <span>Module 4: Excel</span>
           </span>
           <span className="text-slate-400">|</span>
           <span className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-100 text-orange-900 rounded-full text-sm font-medium">
-            <span>🎯</span>
+            <span className="text-lg leading-none align-middle">🎯</span>
             <span>Final Project</span>
           </span>
         </div>
@@ -637,14 +643,7 @@ export default function ExampleApp() {
                     🎥 Video
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center" role="cell">
-                  <a href="https://aliaoc899.github.io/homework-v3" 
-                     className="text-purple-600 hover:text-purple-800 underline focus:outline-none focus:ring-2 focus:ring-purple-500 rounded px-1 font-medium" 
-                     target="_blank" rel="noopener noreferrer"
-                     aria-label="View Assignment 1">
-                    📝 Assignment 1
-                  </a>
-                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center font-medium text-purple-700" role="cell">📝 Assignment 1</td>
               </tr>
               <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">7</td>
@@ -730,13 +729,7 @@ export default function ExampleApp() {
                     Video
                   </a>
                 </td>
-                <td className="border border-slate-300 px-3 py-2 text-center">
-                  <a href="https://aliaoc899.github.io/misy261-Day-10-practice" 
-                     className="text-blue-600 hover:text-blue-800 underline text-sm" 
-                     target="_blank" rel="noopener noreferrer">
-                    Assignment 2
-                  </a>
-                </td>
+                <td className="border border-slate-300 px-3 py-2 text-center font-medium text-purple-700" role="cell">📝 Assignment 2</td>
               </tr>
               <tr tabIndex={0} role="row" className="bg-pink-50 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell">11</td>
