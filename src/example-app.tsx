@@ -529,7 +529,26 @@ export default function ExampleApp() {
 
         <div className="overflow-x-auto">
           <table
-            className={`w-full border-collapse border border-slate-300 ${fontSizeClasses[fontSize]} transition-colors [tbody tr:hover]:bg-white [tbody tr:focus-within]:bg-white [tbody tr:focus-within]:outline [tbody tr:focus-within]:outline-2 [tbody tr:focus-within]:outline-slate-300`}
+            className={`w-full border-collapse border border-slate-300 ${fontSizeClasses[fontSize]} transition-colors
+              [tbody tr:hover]:bg-white
+              [tbody tr:focus-within]:bg-white
+              [tbody tr:focus-within]:outline
+              [tbody tr:focus-within]:outline-2
+              [tbody tr:focus-within]:outline-slate-300
+              [&>tbody>tr:not(.exam-row):not(.break-row)]:border-l-4
+              [&>tbody>tr:not(.exam-row):not(.break-row)]:border-l-slate-200
+              [&>tbody>tr:not(.exam-row):not(.break-row):hover]:shadow-sm
+              [&>tbody>tr:not(.exam-row):not(.break-row):focus-within]:ring-2
+              [&>tbody>tr:not(.exam-row):not(.break-row):focus-within]:ring-slate-300
+              [&>tbody>tr:not(.exam-row):not(.break-row) td:first-child]:bg-slate-100
+              [&>tbody>tr:not(.exam-row):not(.break-row) td:first-child]:border
+              [&>tbody>tr:not(.exam-row):not(.break-row) td:first-child]:border-slate-300
+              [&>tbody>tr:not(.exam-row):not(.break-row) td:first-child]:rounded-full
+              [&>tbody>tr:not(.exam-row):not(.break-row) td:first-child]:px-3
+              [&>tbody>tr:not(.exam-row):not(.break-row) td:first-child]:py-1
+              [&>tbody>tr:not(.exam-row):not(.break-row) td:first-child]:font-semibold
+              [&>tbody>tr:not(.exam-row):not(.break-row) td:first-child]:text-slate-800
+            `}
             role="table"
             aria-label="MISY261 course schedule with sessions, dates, topics, and resources"
           >
@@ -574,7 +593,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-white">
+              <tr className="bg-white break-row">
                 <td className="border border-slate-300 px-4 py-3 text-center font-semibold text-amber-800 text-base" colSpan={7}>
                   🌞 Labor Day Holiday — No classes
                 </td>
@@ -920,9 +939,9 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-red-200 text-black border-l-4 border-red-600 hover:shadow-md focus-within:ring-2 focus-within:ring-red-600 focus-within:outline-none transition [&>td]:py-3.5 text-base">
+              <tr className="bg-blue-200 text-black border-l-4 border-blue-600 hover:shadow-md focus-within:ring-2 focus-within:ring-blue-600 focus-within:outline-none transition [&>td]:py-3.5 text-base exam-row">
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <span className="inline-block bg-red-200 text-black rounded-full px-2 font-semibold text-base">17</span>
+                  <span className="inline-block bg-blue-200 text-black rounded-full px-2 font-semibold text-base">17</span>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">6-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
@@ -940,7 +959,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-white">
+              <tr className="bg-white break-row">
                 <td className="border border-slate-300 px-4 py-3 text-center font-semibold text-amber-800 text-base" colSpan={7}>
                   🪶 Blue Hen Re-Coop Day (Oct 10) — Classes suspended
                 </td>
@@ -1321,9 +1340,9 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-red-200 text-black border-l-4 border-red-600 hover:shadow-md focus-within:ring-2 focus-within:ring-red-600 focus-within:outline-none transition [&>td]:py-3.5 text-base">
+              <tr className="bg-blue-200 text-black border-l-4 border-blue-600 hover:shadow-md focus-within:ring-2 focus-within:ring-blue-600 focus-within:outline-none transition [&>td]:py-3.5 text-base exam-row">
                 <td className="border border-slate-300 px-3 py-2 text-center">
-                  <span className="inline-block bg-red-200 text-black rounded-full px-2 font-semibold text-base">35</span>
+                  <span className="inline-block bg-blue-200 text-black rounded-full px-2 font-semibold text-base">35</span>
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">17-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
@@ -1350,7 +1369,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-white">
+              <tr className="bg-white break-row">
                 <td className="border border-slate-300 px-4 py-3 text-center font-semibold text-amber-800 text-base" colSpan={7}>
                   🍂 Fall Break (Oct 14–18) — No classes
                 </td>
