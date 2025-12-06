@@ -574,7 +574,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-amber-50">
+              <tr className="bg-white">
                 <td className="border border-slate-300 px-4 py-3 text-center font-semibold text-amber-800 text-base" colSpan={7}>
                   🌞 Labor Day Holiday — No classes
                 </td>
@@ -920,11 +920,13 @@ export default function ExampleApp() {
                 </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">17</td>
+              <tr className="bg-red-200 text-black border-l-4 border-red-600 hover:shadow-md focus-within:ring-2 focus-within:ring-red-600 focus-within:outline-none transition [&>td]:py-3.5 text-base">
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <span className="inline-block bg-red-200 text-black rounded-full px-2 font-semibold text-base">17</span>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">6-Oct</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2 font-semibold">Midterm Exam 1: Access Query Design</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold">📝 Midterm Exam 1: Access Query Design</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No slides available">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No video available">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center" role="cell" aria-label="No homework assigned">-</td>
@@ -938,7 +940,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-amber-50">
+              <tr className="bg-white">
                 <td className="border border-slate-300 px-4 py-3 text-center font-semibold text-amber-800 text-base" colSpan={7}>
                   🪶 Blue Hen Re-Coop Day (Oct 10) — Classes suspended
                 </td>
@@ -1319,11 +1321,13 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr>
-                <td className="border border-slate-300 px-3 py-2 text-center">35</td>
+              <tr className="bg-red-200 text-black border-l-4 border-red-600 hover:shadow-md focus-within:ring-2 focus-within:ring-red-600 focus-within:outline-none transition [&>td]:py-3.5 text-base">
+                <td className="border border-slate-300 px-3 py-2 text-center">
+                  <span className="inline-block bg-red-200 text-black rounded-full px-2 font-semibold text-base">35</span>
+                </td>
                 <td className="border border-slate-300 px-3 py-2 text-center">17-Nov</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">Mon</td>
-                <td className="border border-slate-300 px-4 py-2 font-semibold">Midterm Exam 2: Tableau & Excel Data Analytics</td>
+                <td className="border border-slate-300 px-4 py-2 font-semibold">📝 Midterm Exam 2: Tableau & Excel Data Analytics</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
@@ -1346,7 +1350,7 @@ export default function ExampleApp() {
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
                 <td className="border border-slate-300 px-3 py-2 text-center">-</td>
               </tr>
-              <tr className="bg-amber-50">
+              <tr className="bg-white">
                 <td className="border border-slate-300 px-4 py-3 text-center font-semibold text-amber-800 text-base" colSpan={7}>
                   🍂 Fall Break (Oct 14–18) — No classes
                 </td>
