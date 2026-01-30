@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: radial-gradient(1200px circle at 10% 10%, #e2e8f0 0%, rgba(226, 232, 240, 0) 55%),
+    radial-gradient(900px circle at 90% 20%, #e0f2fe 0%, rgba(224, 242, 254, 0) 50%),
+    #f8fafc;
+  color: #0f172a;
+}
+
+.font-display {
+  font-family: "Space Grotesk", "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+}
+
+.hero-gradient {
+  background: radial-gradient(1200px circle at 0% 0%, rgba(14, 116, 144, 0.18) 0%, rgba(14, 116, 144, 0) 55%),
+    radial-gradient(800px circle at 90% 10%, rgba(59, 130, 246, 0.18) 0%, rgba(59, 130, 246, 0) 50%);
+}
+
+.card {
+  @apply rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm;
+}
+
+.label {
+  @apply font-semibold text-slate-700;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full border px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-wide;
+}
+
+.badge-neutral {
+  @apply border-slate-200 bg-slate-100 text-slate-700;
+}
+
+.badge-indigo {
+  @apply border-indigo-200 bg-indigo-100 text-indigo-900;
+}
+
+.badge-rose {
+  @apply border-rose-200 bg-rose-100 text-rose-900;
+}
+
+.badge-sky {
+  @apply border-sky-200 bg-sky-100 text-sky-900;
+}
+
+.badge-teal {
+  @apply border-teal-200 bg-teal-100 text-teal-900;
+}
+
+.badge-amber {
+  @apply border-amber-200 bg-amber-100 text-amber-900;
+}
+
+.badge-emerald {
+  @apply border-emerald-200 bg-emerald-100 text-emerald-900;
+}
+
+.badge-violet {
+  @apply border-violet-200 bg-violet-100 text-violet-900;
+}
+
+.pill {
+  @apply inline-flex items-center rounded-full border px-3 py-1 text-[0.72rem] font-semibold transition-colors;
+}
+
+.pill-lecture {
+  @apply border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100;
+}
+
+.pill-recording {
+  @apply border-sky-200 bg-sky-50 text-sky-800 hover:bg-sky-100;
+}
+
+.pill-assignment {
+  @apply border-rose-200 bg-rose-50 text-rose-800 hover:bg-rose-100;
+}
+
+.btn-primary {
+  @apply inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-slate-800;
+}
+
+.toggle {
+  @apply rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500 transition-colors;
+}
+
+.toggle-active {
+  @apply bg-slate-900 text-white;
+}
+
+.toolbar {
+  @apply flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-sm;
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  .card {
+    box-shadow: none;
+  }
+
+  @page {
+    margin: 0.6in;
+  }
+
+  table {
+    font-size: 11px;
+  }
+}
