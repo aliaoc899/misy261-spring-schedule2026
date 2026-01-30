@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: #f3f4f6;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(167, 139, 250, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: #1f2937;
+}
+
+.dark body {
+  background-color: #0f172a;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
+  color: #f8fafc;
+}
+
+.font-display {
+  font-family: "Space Grotesk", "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+}
+
+.hero-gradient {
+  /* Removed to let body background shine through, or we can use a subtle overlay */
+  background: transparent;
+}
+
+.card {
+  @apply rounded-2xl border border-white/50 bg-white/70 backdrop-blur-xl p-6 shadow-sm ring-1 ring-black/5 dark:bg-slate-800/70 dark:border-white/10 dark:ring-white/5;
+}
+
+.label {
+  @apply font-semibold text-slate-800 dark:text-slate-200;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-md border px-2.5 py-1 text-[0.7rem] font-bold uppercase tracking-wider shadow-sm;
+}
+
+.badge-neutral {
+  @apply border-slate-200 bg-white text-slate-600 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-300;
+}
+
+.badge-indigo {
+  @apply border-indigo-200 bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:border-indigo-800 dark:text-indigo-300;
+}
+
+.badge-rose {
+  @apply border-rose-200 bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:border-rose-800 dark:text-rose-300;
+}
+
+.badge-sky {
+  @apply border-sky-200 bg-sky-50 text-sky-700 dark:bg-sky-900/30 dark:border-sky-800 dark:text-sky-300;
+}
+
+.badge-teal {
+  @apply border-teal-200 bg-teal-50 text-teal-700 dark:bg-teal-900/30 dark:border-teal-800 dark:text-teal-300;
+}
+
+.badge-amber {
+  @apply border-amber-200 bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:border-amber-800 dark:text-amber-300;
+}
+
+.badge-emerald {
+  @apply border-emerald-200 bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:border-emerald-800 dark:text-emerald-300;
+}
+
+.badge-violet {
+  @apply border-violet-200 bg-violet-50 text-violet-700 dark:bg-violet-900/30 dark:border-violet-800 dark:text-violet-300;
+}
+
+.pill {
+  @apply inline-flex items-center rounded-full border px-3 py-1 text-[0.72rem] font-medium transition-all shadow-sm active:scale-95;
+}
+
+.pill-lecture {
+  @apply border-transparent bg-white text-slate-600 hover:bg-slate-50 hover:border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600 dark:hover:border-slate-500;
+}
+
+.pill-recording {
+  @apply border-transparent bg-sky-100 text-sky-800 hover:bg-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:hover:bg-sky-900/50;
+}
+
+.pill-assignment {
+  @apply border-transparent bg-rose-100 text-rose-800 hover:bg-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:hover:bg-rose-900/50;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-medium text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.toggle {
+  @apply rounded-lg px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-black/5;
+}
+
+.toggle-active {
+  @apply bg-white text-slate-900 shadow-sm ring-1 ring-black/5 dark:bg-slate-700 dark:text-white dark:ring-white/10;
+}
+
+.toolbar {
+  @apply flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-sm dark:bg-slate-800/90 dark:border-slate-700;
+}
+
+.kpi-card {
+  @apply relative overflow-hidden rounded-2xl border border-white/60 bg-white/70 p-4 shadow-md backdrop-blur-xl transition-transform hover:-translate-y-0.5 dark:bg-slate-800/70 dark:border-white/10;
+}
+
+.kpi-accent {
+  @apply absolute inset-x-0 top-0 h-1;
+}
+
+.kpi-body {
+  @apply flex items-center gap-3;
+}
+
+.kpi-orb {
+  @apply flex h-11 w-11 items-center justify-center rounded-2xl text-lg shadow-lg;
+}
+
+.kpi-label {
+  @apply text-[0.65rem] font-bold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500;
+}
+
+.kpi-value {
+  @apply text-2xl font-semibold text-slate-900 dark:text-slate-100;
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  .card {
+    box-shadow: none;
+  }
+
+  @page {
+    margin: 0.6in;
+  }
+
+  table {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0f172a;
+    background-image: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.18) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(14, 116, 144, 0.18) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(56, 189, 248, 0.18) 0px, transparent 50%);
+    color: #e2e8f0;
+  }
+
+  .card {
+    @apply border-slate-700/40 bg-slate-900/70 ring-1 ring-slate-700/40;
+    color: #e2e8f0;
+  }
+
+  .kpi-card {
+    @apply border-slate-700/40 bg-slate-900/60;
+  }
+
+  .badge {
+    @apply border-slate-600/40 bg-slate-800/60 text-slate-200;
+  }
+
+  .pill {
+    @apply border-slate-600/40 bg-slate-800/60 text-slate-200;
+  }
+
+  .pill-recording {
+    @apply bg-blue-600/20 text-blue-100;
+  }
+
+  .pill-assignment {
+    @apply bg-rose-600/20 text-rose-100;
+  }
+
+  .toolbar {
+    @apply border-slate-700/40 bg-slate-900/70;
+  }
+
+  .toggle-active {
+    @apply bg-slate-700 text-slate-100 ring-1 ring-slate-600/60;
+  }
+
+  .kpi-label {
+    @apply text-slate-400;
+  }
+
+  .kpi-value {
+    @apply text-slate-100;
+  }
+
+  .card .text-slate-500,
+  .card .text-slate-600,
+  .card .text-slate-700 {
+    color: #cbd5f5;
+  }
+
+  .card .text-slate-800,
+  .card .text-slate-900 {
+    color: #f8fafc;
+  }
+
+  table {
+    color: #e2e8f0;
+  }
+}
